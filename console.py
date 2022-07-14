@@ -19,4 +19,20 @@ animal_repo.save(animal1)
 animal_repo.save(animal2)
 animal_repo.save(animal3)
 
-print(vet1.__dict__, animal1.__dict__)
+# print(vet1.__dict__, animal1.__dict__)
+animals = animal_repo.select_all()
+vets = vet_repo.select_all()
+
+tom = animal_repo.select(animal2.id)
+jack = vet_repo.select(vet2.id)
+nobody = vet_repo.select(87)
+not_a_dog = animal_repo.select(99)
+
+for animal in animals:
+    print(animal.__dict__)
+
+for vet in vets:
+    print(vet.__dict__)
+
+print(tom.__dict__, jack.__dict__)
+print(nobody, not_a_dog)

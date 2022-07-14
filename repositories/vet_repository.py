@@ -2,10 +2,23 @@ from db.run_sql import run_sql
 from models import *
 # INDEX
 # GET /vets
+def select_all():
+    vets = []
+    results = run_sql("SELECT * FROM vets")
+    for row in results:
+        vet = Vet(row['first_name'], row['last_name'], row['specialism'], row['id'])
+        vets.append(vet)
+    return vets
 
 # SHOW
 # GET /vets/<id>
-
+def select(id):
+    vet = None
+    results = run_sql("SELECT * FROM vets WHERE id = %s", [id])
+    if results:
+        result=results[0]
+        vet = Vet(result['first_name'], result['last_name'], result['specialism'], result['id'])
+    return vet
 # NEW
 # GET /vets/new
 
@@ -15,9 +28,6 @@ def save(vet):
     result = run_sql("INSERT INTO vets (first_name, last_name, specialism) VALUES (%s, %s, %s) RETURNING *", [vet.first_name, vet.last_name, vet.specialism])[0]
     vet.id = result['id']
     return vet
-
-# EDIT
-# GET /vets/<id>/edit
 
 # UPDATE
 # POST /vets/<id>
