@@ -29,6 +29,8 @@ def save(vet):
 
 # UPDATE
 # POST /vets/<id>
+def update(vet):
+    run_sql("UPDATE vets SET (first_name, last_name, specialism) = (%s, %s, %s) WHERE id = %s", [vet.first_name, vet.last_name, vet.specialism, vet.id])
 
 # DELETE
 # POST /vets/<id>/delete
