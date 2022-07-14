@@ -1,3 +1,9 @@
+from flask import Flask, render_template, redirect, Blueprint, request
+from models import *
+from repositories import *
+
+animals_blueprint = Blueprint('animals', __name__)
+
 # INDEX
 # GET /animals
 
