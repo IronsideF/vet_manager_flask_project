@@ -45,3 +45,4 @@ def delete(id):
 
 def delete_all():
     run_sql('DELETE FROM animals')
+

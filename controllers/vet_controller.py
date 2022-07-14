@@ -16,7 +16,8 @@ def index():
 @vets_blueprint.route('/vets/<id>')
 def show(id):
     vet = vet_repo.select(id)
-    return render_template('vets/show.html', vet=vet)
+    animals = vet_repo.animals(vet_repo.select(id))
+    return render_template('vets/show.html', vet=vet, animals=animals)
 
 # NEW
 # GET /vets/new
@@ -45,7 +46,7 @@ def edit(id):
 def update(id):
     vet = Vet(request.form['first_name'], request.form['last_name'], request.form['specialism'], id)
     vet_repo.update(vet)
-    return redirect (f'vets/{vet.id}')
+    return redirect (f'/vets/{vet.id}')
 
 
 # DELETE

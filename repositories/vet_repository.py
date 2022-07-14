@@ -40,3 +40,12 @@ def delete(id):
 
 def delete_all():
     run_sql('DELETE FROM vets')
+
+def animals(vet):
+    results = run_sql("SELECT * FROM animals WHERE vet_id = %s", [vet.id])
+    animals=[]
+    if results:
+        for row in results:
+            animal = Animal(row['name'], row['dob'], row['type'], row['owner_details'], row['treatment_notes'], vet, row['id'])
+            animals.append(animal)
+    return animals
