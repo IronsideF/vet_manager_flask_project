@@ -1,0 +1,22 @@
+from models import *
+from repositories import *
+
+
+vet_repo.delete_all()
+animal_repo.delete_all()
+
+vet1 = Vet('James', 'Bond', 'Cat')
+vet2 = Vet('Jack', 'Bauer', 'Dog')
+vet3 = Vet('Ace', 'Ventura', 'Chinchilla')
+vet_repo.save(vet1)
+vet_repo.save(vet2)
+vet_repo.save(vet3)
+
+animal1 = Animal('Toby', '01/05/2021', 'Dog', 'Nathaniel Forsyth, 4 Hyde Park', 'Bad back leg, very needy', vet2)
+animal2 = Animal('Tom', '06/09/1987', 'Cat', 'Clint Clobber, 71 Tweed Street', 'Obsessed with chasing', vet1)
+animal3 = Animal('BuBu', '21/03/2012', 'Chinchilla', 'Clara Creek, The Old House on the Hill', 'Very cute, fame has gone to her head somewhat', vet3)
+animal_repo.save(animal1)
+animal_repo.save(animal2)
+animal_repo.save(animal3)
+
+print(vet1.__dict__, animal1.__dict__)
