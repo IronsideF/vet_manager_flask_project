@@ -4,7 +4,7 @@ from models import *
 # GET /vets
 def select_all():
     vets = []
-    results = run_sql("SELECT * FROM vets")
+    results = run_sql("SELECT * FROM vets ORDER BY id")
     for row in results:
         vet = Vet(row['first_name'], row['last_name'], row['specialism'], row['id'])
         vets.append(vet)
@@ -42,7 +42,7 @@ def delete_all():
     run_sql('DELETE FROM vets')
 
 def animals(vet):
-    results = run_sql("SELECT * FROM animals WHERE vet_id = %s", [vet.id])
+    results = run_sql("SELECT * FROM animals WHERE vet_id = %s ORDER BY id", [vet.id])
     animals=[]
     if results:
         for row in results:

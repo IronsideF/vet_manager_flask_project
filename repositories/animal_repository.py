@@ -4,7 +4,7 @@ import repositories.vet_repository as vet_repo
 # INDEX
 # GET /animals
 def select_all():
-    results = run_sql("SELECT * FROM animals")
+    results = run_sql("SELECT * FROM animals ORDER BY id")
     animals = []
     for row in results:
         vet = vet_repo.select(row['vet_id'])

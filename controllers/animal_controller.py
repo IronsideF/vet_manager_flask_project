@@ -22,7 +22,8 @@ def show(id):
 # GET /animals/new
 @animals_blueprint.route('/animals/new')
 def new():
-    return render_template('animals/new.html')
+    vets = vet_repo.select_all()
+    return render_template('animals/new.html', vets=vets)
 
 # CREATE
 # POST /animals
@@ -39,7 +40,8 @@ def create():
 @animals_blueprint.route('/animals/<id>/edit')
 def edit(id):
     animal = animal_repo.select(id)
-    return render_template('animals/edit.html', animal=animal)
+    vets = vet_repo.select_all()
+    return render_template('animals/edit.html', animal=animal, vets=vets)
 
 # UPDATE
 # POST /animals/<id>
