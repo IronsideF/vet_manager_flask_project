@@ -1,0 +1,10 @@
+{% extends 'base.html' %}{% block content %}
+    <ul>
+        {% for animal in animals %}
+            <li>Name: <a href="/animals/{{animal.id}}">{{animal.name}}</a>
+                Date of Birth: {{animal.dob}}
+                Type: {{animal.type}}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

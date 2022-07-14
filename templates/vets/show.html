@@ -1,0 +1,16 @@
+{% extends 'base.html' %}{% block content %}
+    <ul>
+        <li>Name: {{ vet.first_name }} {{ vet.last_name }}</li>
+        <li>Specialism: {{ vet.specialism }}</li>
+        <li>Patients:<ul>
+            {% if animals %}
+            {% for animal in animals %}
+            <li><a href="/animals/{{animal.id}}">{{ animal.name }}</a></li>
+        {% endfor %}
+            {% else %}
+                No patients at this time
+            {% endif %}
+        </ul></li>
+    </ul>
+    <p><a href="/vets/{{vet.id}}/edit">Edit Vet Details</a></p>
+{% endblock content %}

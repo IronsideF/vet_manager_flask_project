@@ -1,0 +1,2 @@
+from .animal_controller import animals_blueprint
+from .vet_controller import vets_blueprint
