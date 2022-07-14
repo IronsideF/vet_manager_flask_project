@@ -8,7 +8,7 @@ vets_blueprint = Blueprint('vets', __name__)
 # GET /vets
 @vets_blueprint.route('/vets')
 def index():
-    vets = vet_repo.select_all
+    vets = vet_repo.select_all()
     return render_template('vets/index.html', vets=vets)
 
 # SHOW
@@ -50,7 +50,7 @@ def update(id):
 
 # DELETE
 # POST /vets/<id>/delete
-@vets_blueprint.route('vets/<id>/delete', methods=['POST'])
+@vets_blueprint.route('/vets/<id>/delete', methods=['POST'])
 def delete(id):
     vet_repo.delete(id)
     return redirect ('/vets')
