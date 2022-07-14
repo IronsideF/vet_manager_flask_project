@@ -1,3 +1,10 @@
 {% extends 'base.html' %}{% block content %}
-    
+    <ul>
+        <li>Name: {{ animal.name }}</li>
+        <li>Date of Birth: {{ animal.dob }}</li>
+        <li>Type: {{ animal.type }}</li>
+        <li>Owner: {{animal.owner_details}}</li>
+        <li>Registered Vet: <a href="/vets/{{animal.vet.id}}">{{animal.vet.first_name}} {{animal.vet.last_name}}</a></li>
+        <li>Treatment Notes: {{animal.treatment_notes}}</li>
+    </ul>
 {% endblock content %}
