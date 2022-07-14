@@ -19,8 +19,6 @@ def select(id):
         result=results[0]
         vet = Vet(result['first_name'], result['last_name'], result['specialism'], result['id'])
     return vet
-# NEW
-# GET /vets/new
 
 # CREATE
 # POST /vets
@@ -34,6 +32,9 @@ def save(vet):
 
 # DELETE
 # POST /vets/<id>/delete
+
+def delete(id):
+    run_sql("DELETE FROM vets WHERE id = %s", [id])
 
 def delete_all():
     run_sql('DELETE FROM vets')

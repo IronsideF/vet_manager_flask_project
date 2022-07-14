@@ -37,6 +37,8 @@ def save(animal):
 
 # DELETE
 # POST /animals/<id>/delete
+def delete(id):
+    run_sql("DELETE FROM animals WHERE id = %s", [id])
 
 def delete_all():
     run_sql('DELETE FROM animals')
