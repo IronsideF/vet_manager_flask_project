@@ -1,10 +1,11 @@
 from db.run_sql import run_sql
 from models import *
 import repositories.vet_repository as vet_repo
+import repositories.owner_repository as owner_repo
 # INDEX
 # GET /animals
 def select_all():
-    results = run_sql("SELECT * FROM animals ORDER BY id")
+    results = run_sql("SELECT * FROM animals ORDER BY name")
     animals = []
     for row in results:
         vet = vet_repo.select(row['vet_id'])

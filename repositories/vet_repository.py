@@ -1,10 +1,11 @@
 from db.run_sql import run_sql
 from models import *
+import repositories.owner_repository as owner_repo
 # INDEX
 # GET /vets
 def select_all():
     vets = []
-    results = run_sql("SELECT * FROM vets ORDER BY id")
+    results = run_sql("SELECT * FROM vets ORDER BY last_name")
     for row in results:
         vet = Vet(row['first_name'], row['last_name'], row['specialism'], row['id'])
         vets.append(vet)
@@ -46,6 +47,7 @@ def animals(vet):
     animals=[]
     if results:
         for row in results:
+            owner = owner_repo.select(row['owner_id'])
             animal = Animal(row['name'], row['dob'], row['type'], row['owner_details'], row['treatment_notes'], vet, row['id'])
             animals.append(animal)
     return animals
