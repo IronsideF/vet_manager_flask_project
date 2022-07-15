@@ -16,7 +16,7 @@ def index():
 @vets_blueprint.route('/vets/<id>')
 def show(id):
     vet = vet_repo.select(id)
-    animals = vet_repo.animals(vet_repo.select(id))
+    animals = vet_repo.animals(vet)
     return render_template('vets/show.html', vet=vet, animals=animals)
 
 # NEW
