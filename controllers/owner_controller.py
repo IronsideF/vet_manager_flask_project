@@ -34,9 +34,21 @@ def create():
     return redirect (f'/owners/{owner.id}')
 # EDIT
 # GET /owners/<id>/edit
+@owners_blueprint.route('/owners/<id>/edit')
+def edit(id):
+    owner = owner_repo.select(id)
+    return render_template('owners/edit.html', owner=owner)
 
 # UPDATE
 # POST /owners/<id>
+def update(id):
+    owner = Owner(request.form['first_name'], request.form['last_name'], request.form['phone_num'], request.form['email'], request.form['address'], request.form['registered'], id)
+    owner_repo.update(owner)
+    return redirect(f'/owners/{owner.id}')
 
 # DELETE
 # POST /owners/<id>/delete
+@owners_blueprint.route('/owners/<id>/delete')
+def delete(id):
+    owner_repo.delete(id)
+    return redirect ('/owners')
