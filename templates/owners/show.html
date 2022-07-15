@@ -1,0 +1,30 @@
+{% extends 'base.html' %}{% block content %}
+    <ul>
+        <li>Name: {{owner.first_name}} {{ owner.last_name }}</li>
+        <li>Phone Number: {{owner.phone_num}}</li>
+        <li>Email: {{owner.email}}</li>
+        <li>Address: {{owner.address}}</li>
+        <li>Currently Registered: {{owner.registered}}</li>
+        <form action="/owners/{{owner.id}}/registration" method="post">
+            <input type="submit" {% if owner.registration %}
+                value="Deregister"
+            {% else %}
+                value="Register"
+            {% endif %}>
+        </form>
+        <li>Animals:
+            <ul>
+                {% if animals %}
+                    {% for animal in animals %}
+                        <li><a href="/animals/{{animal.id}}">{{animal.name}}</a></li>
+                    {% endfor %}
+                {% else %}
+                    No animals with the practice
+                {% endif %}
+            </ul>
+        </li>
+    </ul>
+    <form action="/owners/{{owner.id}}/edit">
+        <input type="submit" value="Update Owner Details">
+    </form>
+{% endblock content %}

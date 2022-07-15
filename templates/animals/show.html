@@ -3,7 +3,7 @@
         <li>Name: {{ animal.name }}</li>
         <li>Date of Birth: {{ animal.dob }}</li>
         <li>Type: {{ animal.type }}</li>
-        <li>Owner: {{animal.owner_details}}</li>
+        <li>Owner: <a href="/owners/{{animal.owner.id}}">{{animal.owner.first_name}} {{animal.owner.last_name}}</a></li>
         <li>Registered Vet: <a href="/vets/{{animal.vet.id}}">{{animal.vet.first_name}} {{animal.vet.last_name}}</a></li>
         <li>Treatment Notes: {{animal.treatment_notes}}</li>
         <a href="/animals/{{animal.id}}/edit">Update Pet Details</a>

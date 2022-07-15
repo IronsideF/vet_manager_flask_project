@@ -1,0 +1,24 @@
+{% extends 'base.html' %}{% block content %}
+    <form action="/owners/{{owner.id}}" method="post">
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" id="first_name" value="{{owner.first_name}}">
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" id="last_name" value="{{owner.last_name}}">
+        <label for="phone_num">Phone Number:</label>
+        <input type="text" name="phone_num" id="phone_num" value="{{owner.phone_num}}">
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email" value="{{owner.email}}">
+        <label for="address">Address</label>
+        <textarea name="address" id="address" cols="30" rows="10" ">{{owner.address}}</textarea>
+        <label for="registered">Registration Status:</label>
+        <select name="registered" id="registered">
+            <option value="True" {% if owner.registered %}
+                selected
+            {% endif %}>Registered</option>
+            <option value="False" {% if not owner.registered %}
+                selected
+            {% endif %}>Unregistered</option>
+        </select>
+        <input type="submit" value="Update Owner Details">
+    </form>
+{% endblock content %}
