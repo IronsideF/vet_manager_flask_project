@@ -7,5 +7,8 @@
         <li>Registered Vet: <a href="/vets/{{animal.vet.id}}">{{animal.vet.first_name}} {{animal.vet.last_name}}</a></li>
         <li>Treatment Notes: {{animal.treatment_notes}}</li>
         <a href="/animals/{{animal.id}}/edit">Update Pet Details</a>
+        <form action="/animals/{{animal.id}}/delete" method="post">
+            <input type="submit" value="Delete Patient Record">
+        </form>
     </ul>
 {% endblock content %}

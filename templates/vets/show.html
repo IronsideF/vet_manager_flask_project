@@ -13,4 +13,8 @@
         </ul></li>
     </ul>
     <p><a href="/vets/{{vet.id}}/edit">Edit Vet Details</a></p>
+    <form action="/vets/{{vet.id}}/delete" method="post">
+        <input  id="delete" type="submit" value="Delete Vet Details">
+        <label for="delete">CAUTION: This will delete all records for patients of this vet. <br> Please reassign any patients before deleting this record.</label>
+    </form>
 {% endblock content %}
