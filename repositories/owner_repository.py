@@ -26,7 +26,7 @@ def select(id):
 # CREATE
 # POST /owners
 def save(owner):
-    result = run_sql("INSERT INTO owners (first_name, last_name, phone_num, email, address, registered) VALUES (%s, %s, %s, %s, %s, %s) RETURNING *", [owner.first_name, owner.last_name, owner.phone_num, owner.email, owner.address, owner.registered])
+    result = run_sql("INSERT INTO owners (first_name, last_name, phone_num, email, address, registered) VALUES (%s, %s, %s, %s, %s, %s) RETURNING *", [owner.first_name, owner.last_name, owner.phone_num, owner.email, owner.address, owner.registered])[0]
     owner.id = result['id']
     return owner
 
