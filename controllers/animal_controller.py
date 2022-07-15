@@ -23,7 +23,8 @@ def show(id):
 @animals_blueprint.route('/animals/new')
 def new():
     vets = vet_repo.select_all()
-    return render_template('animals/new.html', vets=vets)
+    owners = owner_repo.select_all()
+    return render_template('animals/new.html', vets=vets, owners=owners)
 
 # CREATE
 # POST /animals
