@@ -1,0 +1,12 @@
+{% extends 'base.html' %}{% block content %}
+    <ul>
+        {% for owner in owners %}
+            <li>
+                Name: <a href="/owners/{{owner.id}}">{{owner.first_name}} {{owner.last_name}}</a> 
+                Phone number: {{owner.phone_num}}
+                Email: {{owner.email}}
+                Currently Registered: {{owner.registered}}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

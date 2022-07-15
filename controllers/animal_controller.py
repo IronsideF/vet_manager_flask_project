@@ -51,7 +51,7 @@ def edit(id):
 @animals_blueprint.route('/animals/<id>', methods=['POST'])
 def update(id):
     vet = vet_repo.select(request.form['vet_id'])
-    owner = owner_repo.selectO(request.form['owner_id'])
+    owner = owner_repo.select(request.form['owner_id'])
     animal = Animal(request.form['name'], request.form['dob'], request.form['type'], owner, request.form['treatment_notes'], vet, id)
     animal_repo.update(animal)
     return redirect(f'/animals/{animal.id}')

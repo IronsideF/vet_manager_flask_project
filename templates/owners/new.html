@@ -1,0 +1,15 @@
+{% extends 'base.html' %}{% block content %}
+    <form action="/owners" method="post">
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" id="first_name">
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" id="last_name">
+        <label for="phone_num">Phone Number:</label>
+        <input type="text" name="phone_num" id="phone_num">
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email">
+        <label for="address">Address</label>
+        <textarea name="address" id="address" cols="30" rows="10"></textarea>
+        <input type="submit" value="Register New Owner">
+    </form>
+{% endblock content %}

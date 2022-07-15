@@ -41,6 +41,7 @@ def edit(id):
 
 # UPDATE
 # POST /owners/<id>
+@owners_blueprint.route('/owners/<id>', methods=['POST'])
 def update(id):
     owner = Owner(request.form['first_name'], request.form['last_name'], request.form['phone_num'], request.form['email'], request.form['address'], request.form['registered'], id)
     owner_repo.update(owner)
