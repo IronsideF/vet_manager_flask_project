@@ -7,3 +7,6 @@ class Owner:
         self.address=_address
         self.registered=_registered
         self.id=_id
+
+    def registration(self):
+        self.registered = self.registered != True

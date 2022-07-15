@@ -53,3 +53,12 @@ def update(id):
 def delete(id):
     owner_repo.delete(id)
     return redirect ('/owners')
+
+# Registration
+# POST /owners/<id>/registration
+@owners_blueprint.route('/owners/<id>/registration', methods=['POST'])
+def registration(id):
+    owner = owner_repo.select(id)
+    owner.registration()
+    owner_repo.update(owner)
+    return redirect(f'/owners/{owner.id}')

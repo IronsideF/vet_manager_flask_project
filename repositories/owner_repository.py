@@ -54,3 +54,13 @@ def animals(owner):
             animal = Animal(row['name'], row['dob'], row['type'], owner, row['treatment_notes'], vet, row['id'])
             animals.append(animal)
     return animals
+
+# SHOW ONLY REGISTERED
+def registered_only():
+    results = run_sql("SELECT * FROM owners WHERE registered = true ORDER BY last_name")
+    owners = []
+    for row in results:
+        owner = Owner(row['first_name'], row['last_name'], row['phone_num'], row['email'], row['address'], row['registered'], row['id'])
+        owners.append(owner)
+    return owners
+

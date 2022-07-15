@@ -23,7 +23,7 @@ def show(id):
 @animals_blueprint.route('/animals/new')
 def new():
     vets = vet_repo.select_all()
-    owners = owner_repo.select_all()
+    owners = owner_repo.registered_only()
     return render_template('animals/new.html', vets=vets, owners=owners)
 
 # CREATE
@@ -43,7 +43,7 @@ def create():
 def edit(id):
     animal = animal_repo.select(id)
     vets = vet_repo.select_all()
-    owners = owner_repo.select_all()
+    owners = owner_repo.registered_only()
     return render_template('animals/edit.html', animal=animal, vets=vets, owners=owners)
 
 # UPDATE

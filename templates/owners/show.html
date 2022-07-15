@@ -5,6 +5,13 @@
         <li>Email: {{owner.email}}</li>
         <li>Address: {{owner.address}}</li>
         <li>Currently Registered: {{owner.registered}}</li>
+        <form action="/owners/{{owner.id}}/registration" method="post">
+            <input type="submit" {% if owner.registration %}
+                value="Deregister"
+            {% else %}
+                value="Register"
+            {% endif %}>
+        </form>
         <li>Animals:
             <ul>
                 {% if animals %}
