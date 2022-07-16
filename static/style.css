@@ -191,6 +191,24 @@ ul {
     margin-left: 40px;
 }
 
+.owner-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.owner-details button {
+    margin-left: 40px;
+    margin-top: 10px;
+}
+
+.animal-details {
+    display: flex;
+    flex-direction: column;
+}
+.animal-details button {
+    margin-left: 40px;
+}
+
 .delete-form {
     margin-left: 40px;
     margin-top: 2vh;
@@ -217,9 +235,6 @@ ul {
     padding: 1vh 1vw;
 }
 
-
-
-
 .relational-list ul {
     overflow:auto;
     background-color: var(--background-color);
@@ -228,6 +243,17 @@ ul {
     padding-left: 10vh;
     display: flex;
     flex-direction: column;
+}
+
+.animal-page {
+    background-color: var(--standout-color);
+    height: 60vh;
+    display: grid;
+    grid-template-columns: 50% 25% 25%;
+}
+
+.notes {
+    grid-column: 1 / span 3;
 }
 
 footer {

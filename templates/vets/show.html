@@ -7,12 +7,7 @@
     </ul>
     <a href="/vets/{{vet.id}}/edit"><button type="button" class="form-button">Edit Vet Record</button></a>
 </div>
-<div class="delete">
-    <form action="/vets/{{vet.id}}/delete" method="post" class="delete-form">
-        <button type="sumbit" class="form-button">Delete Vet Details</button>
-        <label for="delete">CAUTION: This will delete all records for patients of this vet. <br> Please reassign any patients before deleting this record.</label>
-    </form>
-</div>
+
 <div class="relational-list">
         <p>Patients:</p>
             {% if animals %}
@@ -27,4 +22,8 @@
         </ul>
     </div>
 </div>
+<form action="/vets/{{vet.id}}/delete" method="post" class="delete-form">
+    <button type="sumbit" class="form-button">Delete Vet Details</button>
+    <label for="delete">CAUTION: This will delete all records for patients of this vet. <br> Please reassign any patients before deleting this record.</label>
+</form>
 {% endblock content %}
