@@ -9,4 +9,4 @@ class Owner:
         self.id=_id
 
     def registration(self):
-        self.registered = self.registered != True
+        self.registered = not self.registered

@@ -9,7 +9,11 @@
     <a href="/animals/{{animal.id}}/edit"><button class="form-button">Update Patient Details</button></a>
 </div>
     <div class="owner-details">
-        Owner: <a href="/owners/{{animal.owner.id}}">{{animal.owner.first_name}} {{animal.owner.last_name}}</a>
+        <ul>
+        <li>Owner: <a href="/owners/{{animal.owner.id}}">{{animal.owner.first_name}} {{animal.owner.last_name}}</a></li>
+        <li>Phone Number: {{animal.owner.phone_num}}</li>
+        <li>Email: {{animal.owner.email}}</li>
+        </ul>
     </div>
     <div class="vet-details">
         Registered Vet: <a href="/vets/{{animal.vet.id}}">{{animal.vet.first_name}} {{animal.vet.last_name}}</a>

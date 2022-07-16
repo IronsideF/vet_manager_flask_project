@@ -185,6 +185,7 @@ ul {
 .vet-details {
     display: flex;
     flex-direction: column;
+    padding-left: 2vw;
 }
 
 .vet-details button {
@@ -249,7 +250,16 @@ ul {
     background-color: var(--standout-color);
     height: 60vh;
     display: grid;
-    grid-template-columns: 50% 25% 25%;
+    grid-template-columns: 40% 35% 25%;
+}
+
+.animal-details {
+    padding-left: 2vw;
+}
+
+
+.animal-page ul {
+    padding:0;
 }
 
 .notes {
