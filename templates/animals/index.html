@@ -1,4 +1,5 @@
 {% extends 'base.html' %}{% block content %}
+<div class="index-list">
     <ul>
         {% for animal in animals %}
             <li>Name: <a href="/animals/{{animal.id}}">{{animal.name}}</a>
@@ -7,4 +8,5 @@
             </li>
         {% endfor %}
     </ul>
+</div>
 {% endblock content %}

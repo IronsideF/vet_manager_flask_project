@@ -1,18 +1,27 @@
 {% extends 'base.html' %}{% block content %}
+<div class="owner-page">
+<div class="owner-details">
     <ul>
         <li>Name: {{owner.first_name}} {{ owner.last_name }}</li>
         <li>Phone Number: {{owner.phone_num}}</li>
         <li>Email: {{owner.email}}</li>
         <li>Address: {{owner.address}}</li>
-        <li>Currently Registered: {{owner.registered}}</li>
-        <form action="/owners/{{owner.id}}/registration" method="post">
-            <input type="submit" {% if owner.registration %}
-                value="Deregister"
-            {% else %}
-                value="Register"
-            {% endif %}>
+        <form action="/owners/{{owner.id}}/edit">
+            <button type="submit" class="form-button">Update Owner Details</button>
         </form>
-        <li>Animals:
+</div>
+<div class="registered">
+    <p>Currently Registered: {{owner.registered}}</p>
+    <form action="/owners/{{owner.id}}/registration" method="post">
+        <button class="form-button" type="submit">{% if owner.registered %}
+                Deregister
+            {% else %}
+                Register
+            {% endif %}</button>
+    </form>
+</div>
+<div class="relational-list">
+        <p>Animals:</p>
             <ul>
                 {% if animals %}
                     {% for animal in animals %}
@@ -22,9 +31,9 @@
                     No animals with the practice
                 {% endif %}
             </ul>
-        </li>
-    </ul>
-    <form action="/owners/{{owner.id}}/edit">
-        <input type="submit" value="Update Owner Details">
-    </form>
+        {% if owner.registered %}
+        <a href="/animals/{{owner.id}}/new"><button type="button" class="form-button">Register a new Animal with this Owner</button></a>
+        {% endif %}
+</div>
+</div>
 {% endblock content %}

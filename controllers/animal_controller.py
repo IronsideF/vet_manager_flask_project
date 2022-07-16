@@ -20,11 +20,11 @@ def show(id):
 
 # NEW
 # GET /animals/new
-@animals_blueprint.route('/animals/new')
-def new():
+@animals_blueprint.route('/animals/<id>/new')
+def new(id):
     vets = vet_repo.select_all()
-    owners = owner_repo.registered_only()
-    return render_template('animals/new.html', vets=vets, owners=owners)
+    owner = owner_repo.select(id)
+    return render_template('animals/new.html', vets=vets, owner=owner)
 
 # CREATE
 # POST /animals
