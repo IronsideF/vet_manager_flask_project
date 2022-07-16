@@ -5,7 +5,7 @@ import repositories.owner_repository as owner_repo
 # INDEX
 # GET /animals
 def select_all():
-    results = run_sql("SELECT * FROM animals ORDER BY name")
+    results = run_sql("SELECT animals.*, owners.last_name FROM animals INNER JOIN owners ON owners.id = animals.owner_id ORDER BY owners.last_name")
     animals = []
     for row in results:
         vet = vet_repo.select(row['vet_id'])

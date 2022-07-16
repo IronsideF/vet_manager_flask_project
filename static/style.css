@@ -133,6 +133,13 @@ ul {
     overflow: auto;
 }
 
+.index-list ul li {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2vh;
+    border: solid 2px var(--border-color);
+}
+
 .new-form {
     background-color: var(--standout-color);
     display: flex;
@@ -175,6 +182,33 @@ ul {
     grid-template-columns: 50% 50%;
 }
 
+.vet-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.vet-details button {
+    margin-left: 40px;
+}
+
+.delete-form {
+    margin-left: 40px;
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.delete-form .form-button {
+    max-width: 20vw;
+}
+.delete-form .form-button:hover {
+    color: red;
+}
+
+.delete-form label {
+    color: rgb(154, 6, 6);
+}
 
 .relational-list {
     grid-column: 1 / span 2;
@@ -182,6 +216,8 @@ ul {
     flex-direction: column;
     padding: 1vh 1vw;
 }
+
+
 
 
 .relational-list ul {
