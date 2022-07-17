@@ -3,8 +3,12 @@
     <div class="animal-details">
     <ul>
         <li>Name: {{ animal.name }}</li>
-        <li>Date of Birth: {{ animal.dob }}</li>
+        <li>Age: {{ animal.age }}</li>
         <li>Type: {{ animal.type }}</li>
+        {% if animal.check_in and date < animal.check_in %}
+        <li>Upcoming Appointments: From {{animal.check_in}} to {{animal.check_out}}</li>
+        {% endif %}
+        
     </ul>
     <a href="/animals/{{animal.id}}/edit"><button class="form-button">Update Patient Details</button></a>
 </div>
@@ -14,9 +18,17 @@
         <li>Phone Number: {{animal.owner.phone_num}}</li>
         <li>Email: {{animal.owner.email}}</li>
         </ul>
-    </div>
-    <div class="vet-details">
         Registered Vet: <a href="/vets/{{animal.vet.id}}">{{animal.vet.first_name}} {{animal.vet.last_name}}</a>
+    </div>
+    <div class="check-in-form">
+        <h3>Set a new Appointment</h3>
+        <form action="/animals/{{animal.id}}/checkin" method="post">
+            <label for="check_in">Check In Date</label>
+            <input type="date" name="check_in" id="check_in">
+            <label for="check_out">Check Out Date</label>
+            <input type="date" name="check_out" id="check_out">
+            <button type="submit">Submit</button>
+        </form>
     </div>
     <div class="notes">
         Treatment Notes: {{animal.treatment_notes}}

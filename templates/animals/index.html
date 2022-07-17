@@ -3,7 +3,7 @@
     <ul>
         {% for animal in animals %}
             <li>Name: <a href="/animals/{{animal.id}}">{{animal.name}} {{animal.owner.last_name}}</a>
-                Date of Birth: {{animal.dob}} <br>
+                Age: {{animal.age}} <br>
                 Type: {{animal.type}}
             </li>
         {% endfor %}

@@ -4,11 +4,21 @@
 </div>
 
 <div class="today">
-    <div class="vet-box">
-
-    </div>
+        <div class="calendar"><iframe srcdoc="{{calendar}}"></iframe></div>
     <div class="animal-box">
-
+        <h3>Animals in Practice</h3>
+        <table>
+            <tr>
+                <td><b>Name</b></td>
+                <td><b>Check-Out Date</b></td>
+            </tr>
+            {% for animal in animals_in_practice %}
+                <tr>
+                    <td>{{animal.name}} {{animal.owner.last_name}}</td>
+                    <td>{{animal.check_out}}</td>
+                </tr>
+            {% endfor %}
+        </table>
     </div>
 </div>
 <div class="main-buttons">

@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, Blueprint, request
 from models import *
 from repositories import *
+from datetime import date, time, datetime
 
 owners_blueprint = Blueprint('owners', __name__)
 
@@ -9,7 +10,7 @@ owners_blueprint = Blueprint('owners', __name__)
 @owners_blueprint.route('/owners')
 def index():
     owners = owner_repo.select_all()
-    return render_template('owners/index.html', owners=owners)
+    return render_template('owners/index.html', owners=owners, date=date.today())
 
 # SHOW
 # GET /owners/<id>
@@ -17,13 +18,13 @@ def index():
 def show(id):
     owner = owner_repo.select(id)
     animals = owner_repo.animals(owner)
-    return render_template('owners/show.html', owner=owner, animals=animals)
+    return render_template('owners/show.html', owner=owner, animals=animals, date=date.today())
 
 # NEW
 # GET /owners/new
 @owners_blueprint.route('/owners/new')
 def new():
-    return render_template('owners/new.html')
+    return render_template('owners/new.html', date=date.today())
 
 # CREATE
 # POST /owners
@@ -37,7 +38,7 @@ def create():
 @owners_blueprint.route('/owners/<id>/edit')
 def edit(id):
     owner = owner_repo.select(id)
-    return render_template('owners/edit.html', owner=owner)
+    return render_template('owners/edit.html', owner=owner, date=date.today())
 
 # UPDATE
 # POST /owners/<id>

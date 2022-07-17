@@ -162,6 +162,14 @@ ul {
     margin-bottom: 1vh;
     width: 30vw;
 }
+.check-in-form {
+    display: flex;
+    flex-direction: column;
+}
+.check-in-form input {
+    margin-bottom: 1vh;
+    width: fit-content;
+}
 
 .form-button {
     background-color: var(--text-color);
