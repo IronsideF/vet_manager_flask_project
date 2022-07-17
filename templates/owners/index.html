@@ -1,12 +1,17 @@
 {% extends 'base.html' %}{% block content %}
+<div class="index-list"> 
     <ul>
         {% for owner in owners %}
             <li>
-                Name: <a href="/owners/{{owner.id}}">{{owner.first_name}} {{owner.last_name}}</a> 
-                Phone number: {{owner.phone_num}}
-                Email: {{owner.email}}
-                Currently Registered: {{owner.registered}}
+                Name:<a href="/owners/{{owner.id}}">{{owner.first_name}} {{owner.last_name}}</a>
+                Phone number: {{owner.phone_num}} <br>
+                Email: {{owner.email}} <br>
+                Currently Registered: {{owner.registered}} <br>
             </li>
         {% endfor %}
     </ul>
+</div> 
+<div class="main-buttons">
+    <a href="/owners/new"><button type="button">Register a New Owner</button></a>
+</div>
 {% endblock content %}

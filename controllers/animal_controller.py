@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, Blueprint, request
 from models import *
 from repositories import *
+from datetime import date, time, datetime
 
 animals_blueprint = Blueprint('animals', __name__)
 
@@ -9,22 +10,22 @@ animals_blueprint = Blueprint('animals', __name__)
 @animals_blueprint.route('/animals')
 def index():
     animals=animal_repo.select_all()
-    return render_template('animals/index.html', animals=animals)
+    return render_template('animals/index.html', animals=animals, date=date.today())
 
 # SHOW
 # GET /animals/<id>
 @animals_blueprint.route('/animals/<id>')
 def show(id):
     animal = animal_repo.select(id)
-    return render_template('animals/show.html', animal=animal)
+    return render_template('animals/show.html', animal=animal, date=date.today())
 
 # NEW
 # GET /animals/new
-@animals_blueprint.route('/animals/new')
-def new():
+@animals_blueprint.route('/animals/<id>/new')
+def new(id):
     vets = vet_repo.select_all()
-    owners = owner_repo.registered_only()
-    return render_template('animals/new.html', vets=vets, owners=owners)
+    owner = owner_repo.select(id)
+    return render_template('animals/new.html', vets=vets, owner=owner, date=date.today())
 
 # CREATE
 # POST /animals
@@ -32,7 +33,7 @@ def new():
 def create():
     vet = vet_repo.select(request.form['vet_id'])
     owner = owner_repo.select(request.form['owner_id'])
-    animal = Animal(request.form['name'], request.form['dob'], request.form['type'], owner, request.form['treatment_notes'], vet)
+    animal = Animal(request.form['name'], request.form['age'], request.form['type'], owner, request.form['treatment_notes'], vet)
     animal = animal_repo.save(animal)
     return redirect(f'/animals/{animal.id}')
 
@@ -44,7 +45,7 @@ def edit(id):
     animal = animal_repo.select(id)
     vets = vet_repo.select_all()
     owners = owner_repo.registered_only()
-    return render_template('animals/edit.html', animal=animal, vets=vets, owners=owners)
+    return render_template('animals/edit.html', animal=animal, vets=vets, owners=owners, date=date.today())
 
 # UPDATE
 # POST /animals/<id>
@@ -52,7 +53,7 @@ def edit(id):
 def update(id):
     vet = vet_repo.select(request.form['vet_id'])
     owner = owner_repo.select(request.form['owner_id'])
-    animal = Animal(request.form['name'], request.form['dob'], request.form['type'], owner, request.form['treatment_notes'], vet, id)
+    animal = Animal(request.form['name'], request.form['age'], request.form['type'], owner, request.form['treatment_notes'], vet, id)
     animal_repo.update(animal)
     return redirect(f'/animals/{animal.id}')
 
@@ -62,3 +63,11 @@ def update(id):
 def delete(id):
     animal_repo.delete(id)
     return redirect('/animals')
+
+@animals_blueprint.route('/animals/<id>/checkin', methods=['POST'])
+def check_in(id):
+    animal = animal_repo.select(id)
+    animal.check_in = request.form['check_in']
+    animal.check_out = request.form['check_out']
+    animal_repo.update(animal)
+    return redirect(f'/animals/{animal.id}')

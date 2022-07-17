@@ -1,9 +1,14 @@
 {% extends 'base.html' %}{% block content %}
-        <ul>
+<div class="index-list">
+    <ul>
             {% for vet in vets %}
                 <li> Name: <a href="/vets/{{vet.id}}">{{vet.first_name}} {{ vet.last_name }}</a>
                     Specialism: {{vet.specialism}}
                 </li>
             {% endfor %}
-        </ul>
+    </ul>
+</div>
+<div class="main-buttons">
+    <a href="/vets/new"><button>Add a new Vet Record</button></a>
+</div>
 {% endblock content %}

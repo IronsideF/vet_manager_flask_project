@@ -1,14 +1,40 @@
 {% extends 'base.html' %}{% block content %}
+<div class="animal-page">   
+    <div class="animal-details">
     <ul>
         <li>Name: {{ animal.name }}</li>
-        <li>Date of Birth: {{ animal.dob }}</li>
+        <li>Age: {{ animal.age }}</li>
         <li>Type: {{ animal.type }}</li>
-        <li>Owner: <a href="/owners/{{animal.owner.id}}">{{animal.owner.first_name}} {{animal.owner.last_name}}</a></li>
-        <li>Registered Vet: <a href="/vets/{{animal.vet.id}}">{{animal.vet.first_name}} {{animal.vet.last_name}}</a></li>
-        <li>Treatment Notes: {{animal.treatment_notes}}</li>
-        <a href="/animals/{{animal.id}}/edit">Update Pet Details</a>
-        <form action="/animals/{{animal.id}}/delete" method="post">
-            <input type="submit" value="Delete Patient Record">
-        </form>
+        {% if animal.check_in and date < animal.check_in %}
+        <li>Upcoming Appointments: From {{animal.check_in}} to {{animal.check_out}}</li>
+        {% endif %}
+        
     </ul>
+    <a href="/animals/{{animal.id}}/edit"><button class="form-button">Update Patient Details</button></a>
+</div>
+    <div class="owner-details">
+        <ul>
+        <li>Owner: <a href="/owners/{{animal.owner.id}}">{{animal.owner.first_name}} {{animal.owner.last_name}}</a></li>
+        <li>Phone Number: {{animal.owner.phone_num}}</li>
+        <li>Email: {{animal.owner.email}}</li>
+        </ul>
+        Registered Vet: <a href="/vets/{{animal.vet.id}}">{{animal.vet.first_name}} {{animal.vet.last_name}}</a>
+    </div>
+    <div class="check-in-form">
+        <h3>Set a new Appointment</h3>
+        <form action="/animals/{{animal.id}}/checkin" method="post">
+            <label for="check_in">Check In Date</label>
+            <input type="date" name="check_in" id="check_in">
+            <label for="check_out">Check Out Date</label>
+            <input type="date" name="check_out" id="check_out">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="notes">
+        Treatment Notes: {{animal.treatment_notes}}
+    </div>
+</div> 
+<form action="/animals/{{animal.id}}/delete" method="post" class="delete-form">
+    <button type="submit" class="form-button">Delete Patient Record</button>
+</form>
 {% endblock content %}

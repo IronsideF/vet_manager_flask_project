@@ -22,9 +22,11 @@ CREATE TABLE owners (
 CREATE TABLE animals (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
-    dob VARCHAR(255),
+    dob DATE,
     type VARCHAR(255),
     owner_id INT NOT NULL REFERENCES owners(id) ON DELETE CASCADE,
     treatment_notes TEXT,
-    vet_id INT NOT NULL REFERENCES vets(id) ON DELETE CASCADE
+    vet_id INT NOT NULL REFERENCES vets(id) ON DELETE CASCADE,
+    check_in DATE,
+    check_out DATE
 );

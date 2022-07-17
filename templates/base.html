@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Vet Manager</title>
 </head>
 <body>
     <header>
+        <div class="heading"><h1>Toby's Angels Veterinary Practice</h1>
+        <h3>Full Throttle Animal Care</h3></div>
+        <p>Date: {{date}}</p>
         <nav> 
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/vets">Vets</a></li>
-                <li><a href="/vets/new">Add a new Vet</a></li>
                 <li><a href="/animals">Patients</a></li>
-                <li><a href="/animals/new">Register a new Patient</a></li>
                 <li><a href="/owners">Owners</a></li>
-                <li><a href="/owners/new">Register a new Owner</a></li>
             </ul>
         </nav>
     </header>
@@ -26,5 +27,8 @@
             
         {% endblock content %}
     </div>
+<footer>
+    <h2>Toby's Angels Veterinary Practice</h2>
+</footer>
 </body>
 </html>

@@ -1,20 +1,29 @@
 {% extends 'base.html' %}{% block content %}
+<div class="show-page">    
+<div class="vet-details">
     <ul>
         <li>Name: {{ vet.first_name }} {{ vet.last_name }}</li>
         <li>Specialism: {{ vet.specialism }}</li>
-        <li>Patients:<ul>
+    </ul>
+    <a href="/vets/{{vet.id}}/edit"><button type="button" class="form-button">Edit Vet Record</button></a>
+</div>
+
+<div class="relational-list">
+        <p>Patients:</p>
             {% if animals %}
-            {% for animal in animals %}
-            <li><a href="/animals/{{animal.id}}">{{ animal.name }}</a></li>
-        {% endfor %}
+            <ul>
+                {% for animal in animals %}
+                <li><a href="/animals/{{animal.id}}">{{ animal.name }}</a></li>
+                {% endfor %}
+            </ul>
             {% else %}
                 No patients at this time
             {% endif %}
-        </ul></li>
-    </ul>
-    <p><a href="/vets/{{vet.id}}/edit">Edit Vet Details</a></p>
-    <form action="/vets/{{vet.id}}/delete" method="post">
-        <input  id="delete" type="submit" value="Delete Vet Details">
-        <label for="delete">CAUTION: This will delete all records for patients of this vet. <br> Please reassign any patients before deleting this record.</label>
-    </form>
+        </ul>
+    </div>
+</div>
+<form action="/vets/{{vet.id}}/delete" method="post" class="delete-form">
+    <button type="sumbit" class="form-button">Delete Vet Details</button>
+    <label for="delete">CAUTION: This will delete all records for patients of this vet. <br> Please reassign any patients before deleting this record.</label>
+</form>
 {% endblock content %}
