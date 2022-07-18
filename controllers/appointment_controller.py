@@ -17,7 +17,13 @@ def index():
 @appoints_blueprint.route('/appointments/<id>')
 def show(id):
     appointment=appoint_repo.select(id)
-    return render_template('appointments/show.html', appointment=appointment, date=date.today())
+    treatments = appoint_repo.treatments(id)
+    existing_treatment_names = []
+    for treatment in treatments:
+        existing_treatment_names.append(treatment.name)
+    all_treatments = treatment_repo.select_all()
+    possible_treatments = [treatment for treatment in all_treatments if treatment.name not in existing_treatment_names]
+    return render_template('appointments/show.html', appointment=appointment, date=date.today(), treatments=treatments, possible_treatments=possible_treatments)
 
 # NEW
 # GET /appointments/new
@@ -63,3 +69,9 @@ def update(id):
 def delete(id):
     appoint_repo.delete(id)
     return redirect('/appointments')
+
+@appoints_blueprint.route('/appointments/<id>/add-treatment', methods=['POST'])
+def add_treatment(id):
+    appointment = appoint_repo.select(id)
+    at_repo.save(id, request.form['treatment_id'])
+    return redirect(f'/appointments/{appointment.id}')

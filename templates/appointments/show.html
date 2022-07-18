@@ -16,10 +16,24 @@
         <div class="vet-treatment-details">
             <ul>
                 <li>Vet: {{appointment.vet.first_name}} {{appointment.vet.last_name}}</li>
+                {% for treatment in treatments %}
+                    <li><a href="/treatments/{{treatment.id}}">{{treatment.name}}</a>
+                        Price: {{treatment.price}}
+                    </li>
+                {% endfor %}
             </ul>
         </div>
         <div class="edit-section">
             <a href="/appointments/{{appointment.id}}/edit"><button class="form-button">Update Appointment Details</button></a>
+            <form action="/appointments/{{appointment.id}}/add-treatment" method="post">
+                <label for="treatment_id">Treatment</label>
+                <select name="treatment_id" id="treatment_id">
+                    {% for treatment in possible_treatments %}
+                        <option value="{{treatment.id}}">{{treatment.name}}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="form-button">Add Treatment</button>
+            </form>
         </div>
     </div>
     <div class="main-buttons">

@@ -2,6 +2,7 @@ from datetime import date, datetime, time
 from models import *
 from repositories import *
 
+at_repo.delete_all()
 appoint_repo.delete_all()
 vet_repo.delete_all()
 animal_repo.delete_all()
@@ -45,6 +46,22 @@ appoint_repo.save(appointment1)
 appoint_repo.save(appointment2)
 appoint_repo.save(appointment3)
 
+at_repo.save(appointment1.id, treatment1.id)
+at_repo.save(appointment2.id, treatment2.id)
+at_repo.save(appointment3.id, treatment3.id)
+at_repo.save(appointment1.id, treatment2.id)
+
+treatments = appoint_repo.treatments(appointment2.id)
+existing_treatment_names = []
+for treatment in treatments:
+    existing_treatment_names.append(treatment.name)
+all_treatments = treatment_repo.select_all()
+possible_treatments = [treatment for treatment in all_treatments if treatment.name not in existing_treatment_names]
+
+print(treatments)
+print(all_treatments)
+print(possible_treatments)
+
 # treatment1.description = 'Slicing'
 # appointment1.date=date(2022, 9, 15)
 # treatment_repo.update(treatment1)
@@ -62,7 +79,7 @@ owners = owner_repo.select_all()
 appointments = appoint_repo.select_all()
 treatments = treatment_repo.select_all()
 
-tom = animal_repo.select(animal2.id)
+# tom = animal_repo.select(animal2.id)
 # jack = vet_repo.select(vet2.id)
 # nobody = vet_repo.select(87)
 # not_a_dog = animal_repo.select(99)
@@ -85,5 +102,5 @@ tom = animal_repo.select(animal2.id)
 
 # print(stitch.__dict__, toby_time.__dict__)
 
-print(tom.__dict__)
+# print(tom.__dict__)
 # print(nobody, not_a_dog)

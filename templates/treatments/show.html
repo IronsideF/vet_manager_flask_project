@@ -1,3 +1,19 @@
 {% extends 'base.html' %} {% block content %}
-    
+    <div class="show-page">
+        <div class="treatment-info">
+            <ul>
+                <li>
+                    Name: {{treatment.name}}
+                    Description: {{treatment.description}}
+                    Price: {{treatment.price}}
+                </li>
+            </ul>
+        </div>
+        <div class="upcoming-appointments">
+            {% for appointment in appointments %}
+                Date: {{appointment.date}}
+                Patient: {{appointment.patient.name}}
+            {% endfor %}
+        </div>
+    </div>
 {% endblock content %}

@@ -2,6 +2,7 @@ from models import *
 from db.run_sql import run_sql
 import repositories.vet_repository as vet_repo
 import repositories.animal_repository as animal_repo
+import repositories.treatment_repository as treatment_repo
 
 # INDEX
 # GET /appointments
@@ -46,3 +47,12 @@ def delete(id):
 
 def delete_all():
     run_sql("DELETE FROM appointments")
+
+def treatments(id):
+    results = run_sql("SELECT treatment_id FROM AppointmentTreatments WHERE appointment_id = %s", [id])
+    treatments = []
+    for row in results:
+        treatment = treatment_repo.select(row['treatment_id'])
+        treatments.append(treatment)
+    return treatments
+

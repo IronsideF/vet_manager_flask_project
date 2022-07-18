@@ -1,5 +1,6 @@
 from models import *
 from db.run_sql import run_sql
+import repositories.appointment_repository as appoint_repo
 
 # INDEX
 # GET /treatments
@@ -41,3 +42,11 @@ def delete(id):
 
 def delete_all():
     run_sql("DELETE FROM treatments")
+
+def appointments(id):
+    results = run_sql("SELECT appointment_id FROM AppointmentTreatments WHERE treatment_id = %s", [id])
+    appointments =[]
+    for row in results:
+        appointment = appoint_repo.select(row['appointment_id'])
+        appointments.append(appointment)
+    return appointments

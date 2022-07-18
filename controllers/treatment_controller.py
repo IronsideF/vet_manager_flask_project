@@ -16,7 +16,8 @@ def index():
 @treatments_blueprint.route('/treatments/<id>')
 def show(id):
     treatment = treatment_repo.select(id)
-    return render_template('treatments/show.html', treatment=treatment, date=date.today())
+    appointments = treatment_repo.appointments(id)
+    return render_template('treatments/show.html', treatment=treatment, date=date.today(), appointments=appointments)
 
 # NEW
 # GET /treatments/new
