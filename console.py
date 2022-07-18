@@ -62,7 +62,7 @@ owners = owner_repo.select_all()
 appointments = appoint_repo.select_all()
 treatments = treatment_repo.select_all()
 
-# tom = animal_repo.select(animal2.id)
+tom = animal_repo.select(animal2.id)
 # jack = vet_repo.select(vet2.id)
 # nobody = vet_repo.select(87)
 # not_a_dog = animal_repo.select(99)
@@ -85,5 +85,5 @@ treatments = treatment_repo.select_all()
 
 # print(stitch.__dict__, toby_time.__dict__)
 
-# print(tom.__dict__, jack.__dict__)
+print(tom.__dict__)
 # print(nobody, not_a_dog)
