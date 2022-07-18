@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% block content %}
+    <form action="/treatments/{{treatment.id}}" method="post" class="new-form">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" value="{{treatment.name}}">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" cols="30" rows="10">{{treatment.description}}</textarea>
+        <label for="price">Price</label>
+        <input type="number" name="price" id="price" value="{{treatment.price}}">
+        <button type="submit" class="form-button">Update Treatment</button>
+    </form>
+{% endblock content %}

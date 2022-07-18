@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% block content %}
+    <form action="/treatments" method="post" class="new-form">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+        <label for="price">Price</label>
+        <input type="number" name="price" id="price">
+        <button type="submit" class="form-button">Add new Treatment</button>
+    </form>
+{% endblock content %}

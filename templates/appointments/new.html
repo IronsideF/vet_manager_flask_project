@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+    <form action="/appointments" method="post" class="new-form">
+        <label for="date">Date</label>
+        <input type="date" name="date" id="date">
+        <label for="time">Time</label>
+        <input type="time" name="time" id="time">
+        <input type="hidden" name="patient_id" value="{{patient.id}}">
+        <label for="vet_id">Vet</label>
+        <select name="vet_id" id="vet_id">
+            {% for vet in vets %}
+                <option value="{{vet.id}}" {% if vet.id == patient.vet.id %}
+                    selected
+                {% endif %}>{{vet.first_name}} {{vet.last_name}}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="form-button">Create New Appointment</button>
+    </form>
+{% endblock content %}

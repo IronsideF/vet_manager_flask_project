@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+    <div class="index-list">
+        <ul>
+            {% for appointment in appointments %}
+                <li>
+                    Date: {{appointment.date}}
+                    Time: {{appointment.time}}
+                    Patient: {{appointment.patient.name}}
+                    Owner: {{appointment.patient.owner.first_name}} {{appointment.patient.owner.last_name}}
+                    Vet: {{appointment.vet.first_name}} {{appointment.vet.last_name}}
+                    <a href="/appointments/{{appointment.id}}"><button class="form-button">See Full Details</button></a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock content %}

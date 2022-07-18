@@ -42,8 +42,7 @@ def save(animal):
 # UPDATE
 # POST /animals/<id>
 def update(animal):
-    dob = date(date.today().year - int(animal.age), date.today().month, date.today().day)
-    run_sql("UPDATE animals SET (name, dob, type, owner_id, treatment_notes, vet_id, check_in, check_out) = (%s, %s, %s, %s, %s, %s, %s, %s) WHERE id = %s", [animal.name, dob, animal.type, animal.owner.id, animal.treatment_notes, animal.vet.id, animal.check_in, animal.check_out, animal.id])
+    run_sql("UPDATE animals SET (name, type, owner_id, treatment_notes, vet_id, check_in, check_out) = (%s, %s, %s, %s, %s, %s, %s) WHERE id = %s", [animal.name, animal.type, animal.owner.id, animal.treatment_notes, animal.vet.id, animal.check_in, animal.check_out, animal.id])
 
 
 # DELETE
