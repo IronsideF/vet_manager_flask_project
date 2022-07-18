@@ -43,7 +43,7 @@ def save(animal):
 # POST /animals/<id>
 def update(animal):
     dob = date(date.today().year - int(animal.age), date.today().month, date.today().day)
-    run_sql("UPDATE animals SET (name, dob, type, owner_id, treatment_notes, vet_id, check_in, check_out) = (%s, %s, %s, %s, %s, %s, %s, %s) WHERE id = %s", [animal.name, animal.age, animal.type, animal.owner.id, animal.treatment_notes, animal.vet.id, animal.check_in, animal.check_out, animal.id])
+    run_sql("UPDATE animals SET (name, dob, type, owner_id, treatment_notes, vet_id, check_in, check_out) = (%s, %s, %s, %s, %s, %s, %s, %s) WHERE id = %s", [animal.name, dob, animal.type, animal.owner.id, animal.treatment_notes, animal.vet.id, animal.check_in, animal.check_out, animal.id])
 
 
 # DELETE
@@ -60,7 +60,7 @@ def select_animals_in_practice():
     today = date.today()
     for animal in results:
         if animal.check_in and animal.check_out:
-            if animal.check_in < today and animal.check_out > today:
+            if animal.check_in < today > animal.check_out:
                 animals.append(animal)
     return animals
 
