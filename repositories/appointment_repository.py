@@ -1,4 +1,3 @@
-from cProfile import run
 from models import *
 from db.run_sql import run_sql
 import repositories.vet_repository as vet_repo
