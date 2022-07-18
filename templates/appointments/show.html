@@ -1,3 +1,30 @@
 {% extends 'base.html' %} {% block content %}
-    
+    <div class="show-page">
+        <div class="appointment-details">
+            <ul>
+                <li>Date: {{appointment.date}}</li>
+                <li>Time: {{appointment.time}}</li>
+            </ul>
+        </div>
+        <div class="pet-and-owner-details">
+            <ul>
+                <li>Patient: {{appointment.patient.name}}</li>
+                <li>Owner: {{appointment.patient.owner.first_name}} {{appointment.patient.owner.last_name}}</li>
+                <li>Contact: {{appointment.patient.owner.phone_num}} {{appointment.patient.owner.email}}</li>
+            </ul>
+        </div>
+        <div class="vet-treatment-details">
+            <ul>
+                <li>Vet: {{appointment.vet.first_name}} {{appointment.vet.last_name}}</li>
+            </ul>
+        </div>
+        <div class="edit-section">
+            <a href="/appointments/{{appointment.id}}/edit"><button class="form-button">Update Appointment Details</button></a>
+        </div>
+    </div>
+    <div class="main-buttons">
+    <form action="/appointment/{{appointment.id}}/delete" method="post">
+        <button type="submit">Delete Appointment</button>
+    </form>
+    </div>
 {% endblock content %}

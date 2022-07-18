@@ -21,16 +21,18 @@ def show(id):
 
 # NEW
 # GET /appointments/new
-@appoints_blueprint.route('/appointments/route')
-def new():
-    return render_template('appointments/new.html', date=date.today())
+@appoints_blueprint.route('/appointments/<id>/new')
+def new(id):
+    animal = animal_repo.select(id)
+    vets=vet_repo.select_all()
+    return render_template('appointments/new.html', date=date.today(), patient=animal, vets=vets)
 
 # CREATE
 # POST /appointments
 @appoints_blueprint.route('/appointments', methods=['POST'])
 def create():
     vet=vet_repo.select(request.form['vet_id'])
-    patient=animal_repo.select(request.form['animal_id'])
+    patient=animal_repo.select(request.form['patient_id'])
     appointment=Appointment(request.form['date'], request.form['time'], patient, vet)
     appoint_repo.save(appointment)
     return redirect(f'/appointments/{appointment.id}')
@@ -40,7 +42,9 @@ def create():
 @appoints_blueprint.route('/appointments/<id>/edit')
 def edit(id):
     appointment = appoint_repo.select(id)
-    return render_template('appointments/edit.html', appointment=appointment, date=date.today())
+    patient = appointment.patient
+    vets = vet_repo.select_all()
+    return render_template('appointments/edit.html', appointment=appointment, date=date.today(), patient=patient, vets=vets)
 
 
 # UPDATE
@@ -48,10 +52,10 @@ def edit(id):
 @appoints_blueprint.route('/appointments/<id>', methods=['POST'])
 def update(id):
     vet=vet_repo.select(request.form['vet_id'])
-    patient=animal_repo.select(request.form['animal_id'])
+    patient=animal_repo.select(request.form['patient_id'])
     appointment=Appointment(request.form['date'], request.form['time'], patient, vet, id)
-    appoint_repo.save(appointment)
-    return redirect(f'/appointments/{id}')
+    appoint_repo.update(appointment)
+    return redirect(f'/appointments/{appointment.id}')
 
 # DELETE
 # POST /appointments/<id>/delete
