@@ -8,7 +8,7 @@ import repositories.animal_repository as animal_repo
 # GET /appointments
 def select_all():
     appointments = []
-    results = run_sql("SELECT * FROM appointments")
+    results = run_sql("SELECT * FROM appointments ORDER BY date")
     for row in results:
         vet = vet_repo.select(row['vet_id'])
         animal = animal_repo.select(row['patient_id'])
