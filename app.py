@@ -11,6 +11,7 @@ app.register_blueprint(vets_blueprint)
 app.register_blueprint(owners_blueprint)
 app.register_blueprint(appoints_blueprint)
 app.register_blueprint(treatments_blueprint)
+app.register_blueprint(tn_blueprint)
 
 today=date.today()
 our_calendar=calendar.HTMLCalendar()

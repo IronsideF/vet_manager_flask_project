@@ -21,7 +21,8 @@ CREATE TABLE owners (
     phone_num VARCHAR(255),
     email VARCHAR(255),
     address VARCHAR(255),
-    registered BOOLEAN
+    registered BOOLEAN,
+    debt INT
 );
 
 CREATE TABLE animals (

@@ -21,6 +21,9 @@
                     </li>
                 {% endfor %}
             </ul>
+            <form action="/owners/{{appointment.patient.owner.id}}/{{appointment.id}}/receipt" method="post">
+                <button type="submit" class="form-button">Generate Receipt</button>
+            </form>
         </div>
         <div class="edit-section">
             <a href="/appointments/{{appointment.id}}/edit"><button class="form-button">Update Appointment Details</button></a>

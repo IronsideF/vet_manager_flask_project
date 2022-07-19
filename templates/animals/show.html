@@ -38,21 +38,20 @@
         </form>
     </div>
     <div class="notes">
-        {% for tn in t_notes %}
+        <div class="the-notes-themselves">{% for tn in t_notes %}
             <div>
-                {{tn.date}} {{tn.time}}
-                {{tn.body}} - Dr. {{tn.vet.last_name}}
-            </div>
-            <form action="/tnotes/{{tn.id}}/delete">
-                <button type="submit" class="form-button">Delete Note</button>
-            </form>
-        {% endfor %}
-        <form action="/tnotes" method="post">
+                <div id="note-text">{{tn.date}} {{tn.time}}
+                {{tn.body}} - Dr. {{tn.vet.last_name}}</div>
+            <form action="/tnotes/{{tn.id}}/{{animal.id}}/delete" method="post">
+                <button type="submit" class="form-button" id="delete-note">Delete</button>
+            </form></div>
+        {% endfor %}</div>
+        <form action="/tnotes" method="post" class="new-form">
             <input type="hidden" name="animal_id" value="{{animal.id}}">
             <textarea name="body" id="body" cols="30" rows="10"></textarea>
-            <select name="vet_id" id="vet_id">
+            <select name="vet_id" id="vet-select">
                 {% for vet in vets %}
-                    <option value="{{vet.id}}">{{vet.first_name}} {{vet.last_name}}</option>
+                    <option value="{{vet.id}}" >{{vet.first_name}} {{vet.last_name}}</option>
                 {% endfor %}
             </select>
             <button type="submit" class="form-button">Submit a new note</button>

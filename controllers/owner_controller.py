@@ -63,3 +63,21 @@ def registration(id):
     owner.registration()
     owner_repo.update(owner)
     return redirect(f'/owners/{owner.id}')
+
+@owners_blueprint.route('/owners/<id>/<app_id>/receipt', methods=['POST'])
+def receipt(id, app_id):
+    owner = owner_repo.select(id)
+    treatments = appoint_repo.treatments(app_id)
+    total_price = 0
+    for treatment in treatments:
+        total_price += treatment.price
+    owner.debt_change(total_price)
+    owner_repo.update(owner)
+    return redirect(f'/owners/{owner.id}')
+
+@owners_blueprint.route('/owners/<id>/pay', methods=['POST'])
+def payment(id):
+    owner = owner_repo.select(id)
+    owner.debt_change(-int(request.form['payment']))
+    owner_repo.update(owner)
+    return redirect(f'/owners/{owner.id}')

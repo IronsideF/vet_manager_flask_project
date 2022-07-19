@@ -35,7 +35,7 @@ def select(id):
 # POST /animals
 def save(animal):
     dob = date(date.today().year - int(animal.age), date.today().month, date.today().day)
-    result = run_sql("INSERT INTO animals (name, dob, type, owner_id, vet_id, check_in, check_out) VALUES (%s, %s, %s, %s, %s, %s, %s,) RETURNING *", [animal.name, dob, animal.type, animal.owner.id, animal.vet.id, animal.check_in, animal.check_out])[0]
+    result = run_sql("INSERT INTO animals (name, dob, type, owner_id, vet_id, check_in, check_out) VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING *", [animal.name, dob, animal.type, animal.owner.id, animal.vet.id, animal.check_in, animal.check_out])[0]
     animal.id = result['id']
     return animal
 

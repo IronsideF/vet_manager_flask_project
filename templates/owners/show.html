@@ -11,6 +11,13 @@
         </form>
 </div>
 <div class="registered">
+    <h4>Current Debt</h4>
+    <p>{{owner.debt}}</p>
+    <form action="/owners/{{owner.id}}/pay" method="post" class="new-form">
+        <label for="payment">Payment Total</label>
+        <input type="number" name="payment" id="payment" max="{{owner.debt}}">
+        <button type="submit" class="form-button">Make Payment</button>
+    </form>
     <p>Currently Registered: {{owner.registered}}</p>
     <form action="/owners/{{owner.id}}/registration" method="post">
         <button class="form-button" type="submit">{% if owner.registered %}
