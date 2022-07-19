@@ -19,7 +19,8 @@ def show(id):
     animal = animal_repo.select(id)
     appointments = animal_repo.appointments(id)
     t_notes = animal_repo.t_notes(id)
-    return render_template('animals/show.html', animal=animal, date=date.today(), appointments=appointments, t_notes=t_notes)
+    vets=vet_repo.select_all()
+    return render_template('animals/show.html', animal=animal, date=date.today(), appointments=appointments, t_notes=t_notes, vets=vets)
 
 # NEW
 # GET /animals/new

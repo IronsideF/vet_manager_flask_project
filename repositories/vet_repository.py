@@ -67,7 +67,7 @@ def appointments(id):
 
 def t_notes(id):
     t_notes = []
-    results = run_sql("SELECT * FROM treatment_notes WHERE vet_id = %s", [id])
+    results = run_sql("SELECT * FROM treatment_notes WHERE vet_id = %s ORDER BY date DESC", [id])
     if results:
         for row in results:
             animal = animal_repo.select(row['animal_id'])

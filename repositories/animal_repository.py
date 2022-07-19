@@ -75,7 +75,7 @@ def appointments(id):
 
 def t_notes(id):
     t_notes = []
-    results = run_sql("SELECT * FROM treatment_notes WHERE animal_id = %s", [id])
+    results = run_sql("SELECT * FROM treatment_notes WHERE animal_id = %s ORDER BY date DESC", [id])
     if results:
         for row in results:
             animal = select(id)
