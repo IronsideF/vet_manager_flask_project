@@ -1,14 +1,9 @@
 {% extends 'base.html' %} {% block content %}
     <div class="index-list">
-        <ul>
+        <ul class="treatment-list">
             {% for treatment in treatments %}
-                <li>Name: {{treatment.name}}
-                    Description: {{treatment.description}}
-                    Price: {{treatment.price}}
-                    <a href="/treatments/{{treatment.id}}/edit"><button class="form-button">Edit Treatment Details</button></a>
-                    <form action="/treatments/{{treatment.id}}/delete" method="post">
-                        <button type="submit" class="form-button">Delete Treatment</button>
-                    </form>
+                <li>Name: <a href="/treatments/{{treatment.id}}">{{treatment.name}}</a><br>
+                    Price: {{treatment.price}} <br>
                 </li>
             {% endfor %}
         </ul>

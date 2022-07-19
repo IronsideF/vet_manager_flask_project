@@ -133,6 +133,14 @@ ul {
     overflow: auto;
 }
 
+.treatment-list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 15% 15% 15% 15% 15%;
+    column-gap: 5%;
+    row-gap: 5%;
+}
+
 .index-list ul li {
     display: flex;
     flex-direction: column;
@@ -256,9 +264,10 @@ ul {
 
 .animal-page {
     background-color: var(--standout-color);
-    height: 60vh;
+    height: 70vh;
     display: grid;
     grid-template-columns: 40% 35% 25%;
+    grid-template-rows: 60% 40%;
 }
 
 .animal-details {
@@ -272,6 +281,10 @@ ul {
 
 .notes {
     grid-column: 1 / span 3;
+}
+
+.upcoming-appointments ul li {
+    margin-top: 2vh;
 }
 
 footer {

@@ -3,11 +3,11 @@
         <ul>
             {% for appointment in appointments %}
                 <li>
-                    Date: {{appointment.date}}
-                    Time: {{appointment.time}}
-                    Patient: {{appointment.patient.name}}
-                    Owner: {{appointment.patient.owner.first_name}} {{appointment.patient.owner.last_name}}
-                    Vet: {{appointment.vet.first_name}} {{appointment.vet.last_name}}
+                    Date: {{appointment.date}}<br>
+                    Time: {{appointment.time}}<br>
+                    Patient: {{appointment.patient.name}}<br>
+                    Owner: {{appointment.patient.owner.first_name}} {{appointment.patient.owner.last_name}}<br>
+                    Vet: {{appointment.vet.first_name}} {{appointment.vet.last_name}}<br>
                     <a href="/appointments/{{appointment.id}}"><button class="form-button">See Full Details</button></a>
                 </li>
             {% endfor %}

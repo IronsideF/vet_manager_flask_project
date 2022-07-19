@@ -3,6 +3,7 @@ from db.run_sql import run_sql
 import repositories.vet_repository as vet_repo
 import repositories.animal_repository as animal_repo
 import repositories.treatment_repository as treatment_repo
+from datetime import time
 
 # INDEX
 # GET /appointments

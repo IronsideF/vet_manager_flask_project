@@ -2,6 +2,7 @@ from db.run_sql import run_sql
 from models import *
 import repositories.vet_repository as vet_repo
 import repositories.owner_repository as owner_repo
+import repositories.appointment_repository as appoint_repo
 from datetime import date, time, datetime, timedelta
 # INDEX
 # GET /animals
@@ -62,4 +63,13 @@ def select_animals_in_practice():
             if animal.check_in < today > animal.check_out:
                 animals.append(animal)
     return animals
+
+def appointments(id):
+    appointments =[]
+    results = run_sql("SELECT * FROM appointments WHERE patient_id = %s", [id])
+    if results:
+        for row in results:
+            appointment = appoint_repo.select(row['id'])
+            appointments.append(appointment)
+    return appointments
 
