@@ -52,7 +52,7 @@ def animals(owner):
         for row in results:
             vet = vet_repo.select(row['vet_id'])
             age = (date.today() - row['dob']) // timedelta(365)
-            animal = Animal(row['name'], age, row['type'], owner, row['treatment_notes'], vet, row['check_in'], row['check_out'], row['id'])
+            animal = Animal(row['name'], age, row['type'], owner, vet, row['check_in'], row['check_out'], row['id'])
             animals.append(animal)
     return animals
 

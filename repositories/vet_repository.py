@@ -2,6 +2,7 @@ from db.run_sql import run_sql
 from models import *
 import repositories.owner_repository as owner_repo
 import repositories.appointment_repository as appoint_repo
+import repositories.animal_repository as animal_repo
 from datetime import date, timedelta
 # INDEX
 # GET /vets
@@ -51,7 +52,7 @@ def animals(vet):
         for row in results:
             owner = owner_repo.select(row['owner_id'])
             age = (date.today() - row['dob']) // timedelta(365)
-            animal = Animal(row['name'], age, row['type'], owner, row['treatment_notes'], vet, row['check_in'], row['check_out'], row['id'])
+            animal = Animal(row['name'], age, row['type'], owner, vet, row['check_in'], row['check_out'], row['id'])
             animals.append(animal)
     return animals
 
@@ -63,3 +64,14 @@ def appointments(id):
             appointment = appoint_repo.select(row['id'])
             appointments.append(appointment)
     return appointments
+
+def t_notes(id):
+    t_notes = []
+    results = run_sql("SELECT * FROM treatment_notes WHERE vet_id = %s", [id])
+    if results:
+        for row in results:
+            animal = animal_repo.select(row['animal_id'])
+            vet = select(id)
+            tn = TreatmentNote(row['date'], row['time'], row['body'], animal, vet, row['id'])
+            t_notes.append(tn)
+    return t_notes
