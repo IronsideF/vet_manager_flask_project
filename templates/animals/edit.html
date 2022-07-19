@@ -21,8 +21,6 @@
                 {% endif %}>{{vet.first_name}} {{vet.last_name}}</option>
             {% endfor %}
         </select></div>
-        <div><label for="treatment_notes">Any notes to add?<br>(Please do not delete existing notes)</label>
-        <textarea name="treatment_notes" id="treatment_notes" cols="30" rows="10">{{ animal.treatment_notes }}</textarea></div>
         <div class="main-buttons"><button type="submit">Update Patient Details</button></div>
     </form>
 {% endblock content %}

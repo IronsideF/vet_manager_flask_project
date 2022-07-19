@@ -36,7 +36,7 @@ def new(id):
 def create():
     vet = vet_repo.select(request.form['vet_id'])
     owner = owner_repo.select(request.form['owner_id'])
-    animal = Animal(request.form['name'], request.form['age'], request.form['type'], owner, request.form['treatment_notes'], vet)
+    animal = Animal(request.form['name'], request.form['age'], request.form['type'], owner, vet)
     animal = animal_repo.save(animal)
     return redirect(f'/animals/{animal.id}')
 
@@ -56,7 +56,7 @@ def edit(id):
 def update(id):
     vet = vet_repo.select(request.form['vet_id'])
     owner = owner_repo.select(request.form['owner_id'])
-    animal = Animal(request.form['name'], request.form['age'], request.form['type'], owner, request.form['treatment_notes'], vet, id)
+    animal = Animal(request.form['name'], request.form['age'], request.form['type'], owner, vet, _id=id)
     animal_repo.update(animal)
     return redirect(f'/animals/{animal.id}')
 

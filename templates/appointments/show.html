@@ -3,6 +3,7 @@
         <div class="appointment-details">
             <ul>
                 <li>{{appointment.date}} at {{appointment.time.hour}}:{%if appointment.time.minute<=9%}0{% endif %}{{appointment.time.minute}}</li>
+                <a href="/appointments/{{appointment.id}}/edit"><button class="form-button">Update Appointment Details</button></a>
             </ul>
         </div>
         <div class="pet-and-owner-details">
@@ -12,20 +13,7 @@
                 <li>Contact: {{appointment.patient.owner.phone_num}} {{appointment.patient.owner.email}}</li>
             </ul>
         </div>
-        <div class="vet-treatment-details">
-                <li>Vet: <a href="/vets/{{appointment.vet.id}}">{{appointment.vet.first_name}} {{appointment.vet.last_name}}</a></li>
-                {% for treatment in treatments %}
-                <div>
-                    <p><li><a href="/treatments/{{treatment.id}}">{{treatment.name}}</a>
-                        Price: {{treatment.price}}
-                    </li></p>
-                    <form action="/appointments/{{treatment.id}}/{{appointment.id}}/remove-treatment" method="post">
-                        <button type="submit" class="form-button" id="delete-note">Remove</button>
-                    </form></div>
-                {% endfor %}
-        </div>
         <div class="edit-section">
-            <a href="/appointments/{{appointment.id}}/edit"><button class="form-button">Update Appointment Details</button></a>
             <form action="/appointments/{{appointment.id}}/add-treatment" method="post">
                 <label for="treatment_id">Treatment</label>
                 <select name="treatment_id" id="treatment_id">
@@ -39,6 +27,19 @@
                 <button type="submit" class="form-button">Generate Receipt</button>
             </form>
         </div>
+        <div class="vet-treatment-details">
+                <li>Vet: <a href="/vets/{{appointment.vet.id}}">{{appointment.vet.first_name}} {{appointment.vet.last_name}}</a></li>
+                {% for treatment in treatments %}
+                <div>
+                    <p><li><a href="/treatments/{{treatment.id}}">{{treatment.name}}</a>
+                        Price: {{treatment.price}}
+                    </li></p>
+                    <form action="/appointments/{{treatment.id}}/{{appointment.id}}/remove-treatment" method="post">
+                        <button type="submit" class="form-button" id="delete-note">Remove</button>
+                    </form></div>
+                {% endfor %}
+        </div>
+        
     </div>
     <div class="main-buttons">
     <form action="/appointments/{{appointment.id}}/delete" method="post">
