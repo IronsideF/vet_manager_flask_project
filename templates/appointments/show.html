@@ -13,17 +13,16 @@
             </ul>
         </div>
         <div class="vet-treatment-details">
-            <ul>
                 <li>Vet: <a href="/vets/{{appointment.vet.id}}">{{appointment.vet.first_name}} {{appointment.vet.last_name}}</a></li>
                 {% for treatment in treatments %}
-                    <li><a href="/treatments/{{treatment.id}}">{{treatment.name}}</a>
+                <div>
+                    <p><li><a href="/treatments/{{treatment.id}}">{{treatment.name}}</a>
                         Price: {{treatment.price}}
-                    </li>
+                    </li></p>
+                    <form action="/appointments/{{treatment.id}}/{{appointment.id}}/remove-treatment" method="post">
+                        <button type="submit" class="form-button" id="delete-note">Delete</button>
+                    </form></div>
                 {% endfor %}
-            </ul>
-            <form action="/owners/{{appointment.patient.owner.id}}/{{appointment.id}}/receipt" method="post">
-                <button type="submit" class="form-button">Generate Receipt</button>
-            </form>
         </div>
         <div class="edit-section">
             <a href="/appointments/{{appointment.id}}/edit"><button class="form-button">Update Appointment Details</button></a>
@@ -35,6 +34,9 @@
                     {% endfor %}
                 </select>
                 <button type="submit" class="form-button">Add Treatment</button>
+            </form>
+            <form action="/owners/{{appointment.patient.owner.id}}/{{appointment.id}}/receipt" method="post">
+                <button type="submit" class="form-button">Generate Receipt</button>
             </form>
         </div>
     </div>

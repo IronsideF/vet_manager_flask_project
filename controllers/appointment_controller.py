@@ -75,3 +75,8 @@ def add_treatment(id):
     appointment = appoint_repo.select(id)
     at_repo.save(id, request.form['treatment_id'])
     return redirect(f'/appointments/{appointment.id}')
+
+@appoints_blueprint.route('/appointments/<id>/<app_id>/remove-treatment', methods=['POST'])
+def remove_treatment(id, app_id):
+    at_repo.delete(id, app_id)
+    return redirect(f'/appointments/{app_id}')
