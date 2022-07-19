@@ -6,11 +6,18 @@
         <li>Age: {{ animal.age }}</li>
         <li>Type: {{ animal.type }}</li>
         {% if animal.check_in and date < animal.check_in %}
-        <li>Upcoming Appointments: From {{animal.check_in}} to {{animal.check_out}}</li>
+        <li>Upcoming and Current Stays: From {{animal.check_in}} to {{animal.check_out}}</li>
         {% endif %}
         
     </ul>
     <a href="/animals/{{animal.id}}/edit"><button class="form-button">Update Patient Details</button></a>
+    <a href="/appointments/{{animal.id}}/new"><button class="form-button">Create a new Appointment</button></a>
+    <ul>
+        <h4>Upcoming Appointments</h4>
+        {% for appointment in appointments %}
+            <li><a href="/appointments/{{appointment.id}}">{{appointment.date}} at {{appointment.time.hour}}:{{appointment.time.minute}}{%if appointment.time.minute==0%}0{% endif %} </a> with <a href="/vets/{{appointment.vet.id}}">{{appointment.vet.first_name}} {{appointment.vet.last_name}}</a></li>
+        {% endfor %}
+    </ul>
 </div>
     <div class="owner-details">
         <ul>
@@ -21,8 +28,6 @@
         Registered Vet: <a href="/vets/{{animal.vet.id}}">{{animal.vet.first_name}} {{animal.vet.last_name}}</a>
     </div>
     <div class="check-in-form">
-        <a href="/appointments/{{animal.id}}/new"><button class="form-button">Create a new Appointment</button></a>
-        
         <form action="/animals/{{animal.id}}/checkin" method="post" class="new-form">
             <h3>Long Term Stay? Set Check in and out dates</h3>
             <label for="check_in">Check In Date</label>

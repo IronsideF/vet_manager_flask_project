@@ -17,7 +17,8 @@ def index():
 @animals_blueprint.route('/animals/<id>')
 def show(id):
     animal = animal_repo.select(id)
-    return render_template('animals/show.html', animal=animal, date=date.today())
+    appointments = animal_repo.appointments(id)
+    return render_template('animals/show.html', animal=animal, date=date.today(), appointments=appointments)
 
 # NEW
 # GET /animals/new
@@ -71,3 +72,4 @@ def check_in(id):
     animal.check_out = request.form['check_out']
     animal_repo.update(animal)
     return redirect(f'/animals/{animal.id}')
+

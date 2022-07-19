@@ -3,17 +3,25 @@
         <div class="treatment-info">
             <ul>
                 <li>
-                    Name: {{treatment.name}}
-                    Description: {{treatment.description}}
+                    Name: {{treatment.name}} <br>
+                    Description: {{treatment.description}} <br>
                     Price: {{treatment.price}}
                 </li>
             </ul>
+            <a href="/treatments/{{treatment.id}}/edit"><button class="form-button">Edit Treatment Details</button></a> <br>
+                    <form action="/treatments/{{treatment.id}}/delete" method="post">
+                        <button type="submit" class="form-button">Delete Treatment</button>
+                    </form>
         </div>
         <div class="upcoming-appointments">
+            <ul>
+                <h4>Upcoming Appointments</h4>
             {% for appointment in appointments %}
-                Date: {{appointment.date}}
-                Patient: {{appointment.patient.name}}
+                <li>Date: <a href="/appointments/{{appointment.id}}">{{appointment.date}}</a> <br>
+                Patient: <a href="/animals/{{appointment.patient.id}}">{{appointment.patient.name}}</a> <br>
+            </li>
             {% endfor %}
+        </ul>
         </div>
     </div>
 {% endblock content %}
