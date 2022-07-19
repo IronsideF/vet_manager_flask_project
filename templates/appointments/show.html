@@ -2,20 +2,19 @@
     <div class="show-page">
         <div class="appointment-details">
             <ul>
-                <li>Date: {{appointment.date}}</li>
-                <li>Time: {{appointment.time}}</li>
+                <li>{{appointment.date}} at {{appointment.time.hour}}:{{appointment.time.minute}}{%if appointment.time.minute==0%}0{% endif %}</li>
             </ul>
         </div>
         <div class="pet-and-owner-details">
             <ul>
-                <li>Patient: {{appointment.patient.name}}</li>
-                <li>Owner: {{appointment.patient.owner.first_name}} {{appointment.patient.owner.last_name}}</li>
+                <li>Patient: <a href="/animals/{{appointment.patient.id}}">{{appointment.patient.name}}</a></li>
+                <li>Owner: <a href="/owners/{{appointment.patient.owner.id}}">{{appointment.patient.owner.first_name}} {{appointment.patient.owner.last_name}}</a></li>
                 <li>Contact: {{appointment.patient.owner.phone_num}} {{appointment.patient.owner.email}}</li>
             </ul>
         </div>
         <div class="vet-treatment-details">
             <ul>
-                <li>Vet: {{appointment.vet.first_name}} {{appointment.vet.last_name}}</li>
+                <li>Vet: <a href="/vets/{{appointment.vet.id}}">{{appointment.vet.first_name}} {{appointment.vet.last_name}}</a></li>
                 {% for treatment in treatments %}
                     <li><a href="/treatments/{{treatment.id}}">{{treatment.name}}</a>
                         Price: {{treatment.price}}

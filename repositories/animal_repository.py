@@ -3,7 +3,7 @@ from models import *
 import repositories.vet_repository as vet_repo
 import repositories.owner_repository as owner_repo
 import repositories.appointment_repository as appoint_repo
-from datetime import date, time, datetime, timedelta
+from datetime import date, timedelta
 # INDEX
 # GET /animals
 def select_all():

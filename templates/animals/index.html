@@ -1,12 +1,10 @@
 {% extends 'base.html' %}{% block content %}
-<div class="index-list">
-    <ul>
+<div class="index-list animal-index">
         {% for animal in animals %}
             <li>Name: <a href="/animals/{{animal.id}}">{{animal.name}} {{animal.owner.last_name}}</a>
                 Age: {{animal.age}} <br>
                 Type: {{animal.type}}
             </li>
         {% endfor %}
-    </ul>
 </div>
 {% endblock content %}

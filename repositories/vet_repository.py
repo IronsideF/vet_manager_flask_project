@@ -1,6 +1,8 @@
 from db.run_sql import run_sql
 from models import *
 import repositories.owner_repository as owner_repo
+import repositories.appointment_repository as appoint_repo
+from datetime import date, timedelta
 # INDEX
 # GET /vets
 def select_all():
@@ -43,11 +45,21 @@ def delete_all():
     run_sql('DELETE FROM vets')
 
 def animals(vet):
-    results = run_sql("SELECT * FROM animals WHERE vet_id = %s ORDER BY id", [vet.id])
+    results = run_sql("SELECT * FROM animals WHERE vet_id = %s ORDER BY name", [vet.id])
     animals=[]
     if results:
         for row in results:
             owner = owner_repo.select(row['owner_id'])
-            animal = Animal(row['name'], row['dob'], row['type'], owner, row['treatment_notes'], vet, row['id'])
+            age = (date.today() - row['dob']) // timedelta(365)
+            animal = Animal(row['name'], age, row['type'], owner, row['treatment_notes'], vet, row['check_in'], row['check_out'], row['id'])
             animals.append(animal)
     return animals
+
+def appointments(id):
+    appointments =[]
+    results = run_sql("SELECT * FROM appointments WHERE vet_id = %s", [id])
+    if results:
+        for row in results:
+            appointment = appoint_repo.select(row['id'])
+            appointments.append(appointment)
+    return appointments

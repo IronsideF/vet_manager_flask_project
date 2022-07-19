@@ -1,7 +1,7 @@
 from db.run_sql import run_sql
 from models import *
 import repositories.vet_repository as vet_repo
-import repositories.animal_repository as animal_repo
+from datetime import date, timedelta
 
 # INDEX
 # GET /owners
@@ -51,7 +51,8 @@ def animals(owner):
     if results:
         for row in results:
             vet = vet_repo.select(row['vet_id'])
-            animal = Animal(row['name'], row['dob'], row['type'], owner, row['treatment_notes'], vet, row['id'])
+            age = (date.today() - row['dob']) // timedelta(365)
+            animal = Animal(row['name'], age, row['type'], owner, row['treatment_notes'], vet, row['check_in'], row['check_out'], row['id'])
             animals.append(animal)
     return animals
 

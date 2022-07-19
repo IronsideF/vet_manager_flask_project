@@ -17,7 +17,7 @@
             <ul>
                 <h4>Upcoming Appointments</h4>
             {% for appointment in appointments %}
-                <li>Date: <a href="/appointments/{{appointment.id}}">{{appointment.date}}</a> <br>
+                <li><a href="/appointments/{{appointment.id}}">{{appointment.date}} at {{appointment.time.hour}}:{{appointment.time.minute}}{%if appointment.time.minute==0%}0{% endif %} </a> <br>
                 Patient: <a href="/animals/{{appointment.patient.id}}">{{appointment.patient.name}}</a> <br>
             </li>
             {% endfor %}
