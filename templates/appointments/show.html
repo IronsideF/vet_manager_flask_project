@@ -2,7 +2,7 @@
     <div class="show-page">
         <div class="appointment-details">
             <ul>
-                <li>{{appointment.date}} at {{appointment.time.hour}}:{{appointment.time.minute}}{%if appointment.time.minute==0%}0{% endif %}</li>
+                <li>{{appointment.date}} at {{appointment.time.hour}}:{%if appointment.time.minute<=9%}0{% endif %}{{appointment.time.minute}}</li>
             </ul>
         </div>
         <div class="pet-and-owner-details">

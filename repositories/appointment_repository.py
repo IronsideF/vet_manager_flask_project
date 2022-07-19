@@ -57,3 +57,13 @@ def treatments(id):
         treatments.append(treatment)
     return treatments
 
+def select_by_day(date):
+    results = run_sql("SELECT * FROM appointments WHERE date = %s ORDER BY time", [date])
+    appointments=[]
+    if results:
+        for row in results:
+            vet = vet_repo.select(row['vet_id'])
+            animal = animal_repo.select(row['patient_id'])
+            appointment = Appointment(row['date'], row['time'], animal, vet, row['id'])
+            appointments.append(appointment)
+    return appointments
