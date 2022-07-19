@@ -1,9 +1,11 @@
 DROP TABLE IF EXISTS AppointmentTreatments;
 DROP TABLE IF EXISTS appointments;
+DROP TABLE IF EXISTS treatment_notes;
 DROP TABLE IF EXISTS animals;
 DROP TABLE IF EXISTS vets;
 DROP TABLE IF EXISTS owners;
 DROP TABLE IF EXISTS treatments;
+
 
 CREATE TABLE vets (
     id SERIAL PRIMARY KEY,
@@ -19,7 +21,8 @@ CREATE TABLE owners (
     phone_num VARCHAR(255),
     email VARCHAR(255),
     address VARCHAR(255),
-    registered BOOLEAN
+    registered BOOLEAN,
+    debt INT
 );
 
 CREATE TABLE animals (
@@ -53,4 +56,13 @@ CREATE TABLE AppointmentTreatments (
     id SERIAL PRIMARY KEY,
     appointment_id INT REFERENCES appointments(id) ON DELETE CASCADE,
     treatment_id INT REFERENCES treatments(id) ON DELETE CASCADE
+);
+
+CREATE TABLE treatment_notes (
+    id SERIAL PRIMARY KEY,
+    date DATE,
+    time TIME,
+    body TEXT,
+    animal_id INT REFERENCES animals(id) ON DELETE CASCADE,
+    vet_id INT REFERENCES vets(id) ON DELETE CASCADE
 );

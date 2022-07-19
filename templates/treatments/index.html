@@ -1,12 +1,10 @@
 {% extends 'base.html' %} {% block content %}
-    <div class="index-list">
-        <ul class="treatment-list">
+    <div class="index-list treatment-index">
             {% for treatment in treatments %}
                 <li>Name: <a href="/treatments/{{treatment.id}}">{{treatment.name}}</a><br>
                     Price: {{treatment.price}} <br>
                 </li>
             {% endfor %}
-        </ul>
     </div>
     <div class="main-buttons"><a href="/treatments/new"><button>Add a new Treatment</button></a></div>
 {% endblock content %}

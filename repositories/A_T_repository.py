@@ -6,3 +6,6 @@ def save(appointment_id, treatment_id):
 
 def delete_all():
     run_sql("DELETE FROM AppointmentTreatments")
+
+def delete(treat_id, app_id):
+    run_sql("DELETE FROM AppointmentTreatments WHERE (treatment_id, appointment_id) = (%s, %s)", [treat_id, app_id])

@@ -1,21 +1,23 @@
 {% extends 'base.html' %}{% block content %}
 <div class="announcements">
-    
+    <p>Welcome to Toby's Angels, where we go full throttle on your animal's care. Have a happy {{day}}</p>
 </div>
 
 <div class="today">
         <div class="calendar"><iframe srcdoc="{{calendar}}"></iframe></div>
     <div class="animal-box">
-        <h3>Animals in Practice</h3>
+        <h3>Appointments Today</h3>
         <table>
             <tr>
-                <td><b>Name</b></td>
-                <td><b>Check-Out Date</b></td>
+                <td><b>Time</b></td>
+                <td><b>Patient</b></td>
+                <td><b>Vet</b></td>
             </tr>
-            {% for animal in animals_in_practice %}
+            {% for app in appointments_today %}
                 <tr>
-                    <td>{{animal.name}} {{animal.owner.last_name}}</td>
-                    <td>{{animal.check_out}}</td>
+                    <td><a href="/appointments/{{app.id}}">{{app.time.hour}}:{%if app.time.minute<=9%}0{% endif %}{{app.time.minute}}</a></td>
+                    <td><a href="/animals/{{app.patient.id}}">{{app.patient.name}}</a></td>
+                    <td><a href="/vets/{{app.vet.id}}">Dr. {{app.vet.last_name}}</a></td>
                 </tr>
             {% endfor %}
         </table>

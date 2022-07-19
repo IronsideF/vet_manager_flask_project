@@ -15,7 +15,7 @@
     <ul>
         <h4>Upcoming Appointments</h4>
         {% for appointment in appointments %}
-            <li><a href="/appointments/{{appointment.id}}">{{appointment.date}} at {{appointment.time.hour}}:{{appointment.time.minute}}{%if appointment.time.minute==0%}0{% endif %} </a> with <a href="/vets/{{appointment.vet.id}}">{{appointment.vet.first_name}} {{appointment.vet.last_name}}</a></li>
+            <li><a href="/appointments/{{appointment.id}}">{{appointment.date}} at {{appointment.time.hour}}:{%if appointment.time.minute<=9%}0{% endif %}{{appointment.time.minute}}</a> with <a href="/vets/{{appointment.vet.id}}">{{appointment.vet.first_name}} {{appointment.vet.last_name}}</a></li>
         {% endfor %}
     </ul>
 </div>
@@ -38,7 +38,24 @@
         </form>
     </div>
     <div class="notes">
-        Treatment Notes: {{animal.treatment_notes}}
+        <div class="the-notes-themselves">{% for tn in t_notes %}
+            <div>
+                <div id="note-text">{{tn.date}} {{tn.time}}
+                {{tn.body}} - Dr. {{tn.vet.last_name}}</div>
+            <form action="/tnotes/{{tn.id}}/{{animal.id}}/delete" method="post">
+                <button type="submit" class="form-button" id="delete-note">Delete</button>
+            </form></div>
+        {% endfor %}</div>
+        <form action="/tnotes" method="post" class="new-form">
+            <input type="hidden" name="animal_id" value="{{animal.id}}">
+            <textarea name="body" id="body" cols="30" rows="10"></textarea>
+            <select name="vet_id" id="vet-select">
+                {% for vet in vets %}
+                    <option value="{{vet.id}}" >{{vet.first_name}} {{vet.last_name}}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="form-button">Submit a new note</button>
+        </form>
     </div>
 </div> 
 <form action="/animals/{{animal.id}}/delete" method="post" class="delete-form">

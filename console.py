@@ -8,6 +8,7 @@ vet_repo.delete_all()
 animal_repo.delete_all()
 owner_repo.delete_all()
 treatment_repo.delete_all()
+tn_repo.delete_all()
 
 vet1 = Vet('James', 'Bond', 'Cat')
 vet2 = Vet('Jack', 'Bauer', 'Dog')
@@ -25,9 +26,9 @@ owner_repo.save(owner1)
 owner_repo.save(owner2)
 owner_repo.save(owner3)
 
-animal1 = Animal('Toby', 5, 'Dog', owner1, 'Bad back leg, very needy', vet2)
-animal2 = Animal('Tom', 17, 'Cat', owner2, 'Obsessed with chasing', vet1)
-animal3 = Animal('BuBu', 10, 'Chinchilla', owner3, 'Very cute, fame has gone to her head somewhat', vet3)
+animal1 = Animal('Toby', 5, 'Dog', owner1, vet2)
+animal2 = Animal('Tom', 17, 'Cat', owner2, vet1)
+animal3 = Animal('BuBu', 10, 'Chinchilla', owner3, vet3)
 animal_repo.save(animal1)
 animal_repo.save(animal2)
 animal_repo.save(animal3)
@@ -50,17 +51,30 @@ at_repo.save(appointment1.id, treatment1.id)
 at_repo.save(appointment2.id, treatment2.id)
 at_repo.save(appointment3.id, treatment3.id)
 at_repo.save(appointment1.id, treatment2.id)
+today = datetime.today()
 
-treatments = appoint_repo.treatments(appointment2.id)
-existing_treatment_names = []
-for treatment in treatments:
-    existing_treatment_names.append(treatment.name)
-all_treatments = treatment_repo.select_all()
-possible_treatments = [treatment for treatment in all_treatments if treatment.name not in existing_treatment_names]
+tn1=TreatmentNote(date.today(), time(today.hour, today.minute), 'Very needy, bad back leg', animal1, vet2)
+tn2=TreatmentNote(date.today(), time(today.hour, today.minute), 'Obsessed with chasing', animal2, vet1)
+tn3=TreatmentNote(date.today(), time(today.hour, today.minute), 'Very cute, fame has gone to her head somewhat', animal3, vet3)
 
-print(treatments)
-print(all_treatments)
-print(possible_treatments)
+tn_repo.save(tn1)
+tn_repo.save(tn2)
+tn_repo.save(tn3)
+
+# tn_repo.delete(tn3.id)
+# tn1.body='Way too hot'
+# tn_repo.update(tn1)
+
+# treatments = appoint_repo.treatments(appointment2.id)
+# existing_treatment_names = []
+# for treatment in treatments:
+#     existing_treatment_names.append(treatment.name)
+# all_treatments = treatment_repo.select_all()
+# possible_treatments = [treatment for treatment in all_treatments if treatment.name not in existing_treatment_names]
+
+# print(treatments)
+# print(all_treatments)
+# print(possible_treatments)
 
 # treatment1.description = 'Slicing'
 # appointment1.date=date(2022, 9, 15)
@@ -71,6 +85,7 @@ print(possible_treatments)
 # toby_time = appoint_repo.select(appointment3.id)
 # treatment_repo.delete(treatment3.id)
 # appoint_repo.delete(appointment2.id)
+
 
 
 animals = animal_repo.select_all()
@@ -85,14 +100,14 @@ treatments = treatment_repo.select_all()
 # not_a_dog = animal_repo.select(99)
 
 
-# for animal in animals:
-#     print(animal.__dict__)
+for animal in animals:
+    print(animal.__dict__, animal.owner.__dict__)
 
-# for vet in vets:
-#     print(vet.__dict__)
+for vet in vets:
+    print(vet.__dict__)
 
-# for owner in owners:
-#     print(owner.__dict__)
+for owner in owners:
+    print(owner.__dict__)
 
 # for treatment in treatments:
 #     print(treatment.__dict__)

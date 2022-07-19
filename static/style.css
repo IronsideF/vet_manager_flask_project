@@ -125,27 +125,46 @@ ul {
     color: var(--header-color);
 }
 
+
+
 .index-list {
-    display: flex;
-    background-color: var(--standout-color);
+    width: 100%;
+    max-width: 80vw;
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-auto-rows: max-content;
+    column-gap: 5%;
+    overflow-y: auto;
+    overflow-x: hidden;
     margin: 2vh 0;
     height: 60vh;
-    overflow: auto;
+    background-color: var(--standout-color);
 }
 
-.treatment-list {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 15% 15% 15% 15% 15%;
-    column-gap: 5%;
-    row-gap: 5%;
+.animal-index {
+    grid-template-columns: repeat(5, 15%);
+}
+.vet-index {
+    grid-template-columns: repeat(5, 17%);
+}
+.owner-index {
+    grid-template-columns: repeat(3, 27%);
+}
+.treatment-index {
+    grid-template-columns: repeat(5, 15%);
+}
+.appointment-index {
+    grid-template-columns: repeat(4, 20%);
 }
 
-.index-list ul li {
+.index-list li {
     display: flex;
     flex-direction: column;
     margin-bottom: 2vh;
     border: solid 2px var(--border-color);
+    max-height: 100%;
+    max-width: 100%;
+    align-items: center;
 }
 
 .new-form {
@@ -265,9 +284,11 @@ ul {
 .animal-page {
     background-color: var(--standout-color);
     height: 70vh;
+    max-height: 70vh;
     display: grid;
     grid-template-columns: 40% 35% 25%;
     grid-template-rows: 60% 40%;
+    overflow: auto;
 }
 
 .animal-details {
@@ -281,10 +302,80 @@ ul {
 
 .notes {
     grid-column: 1 / span 3;
+    display: flex;
+    justify-content: space-between;
+}
+.the-notes-themselves {
+    display: flex;
+    flex-direction: column;
+}
+
+.the-notes-themselves div {
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1vh;
+    border: solid var(--border-color) 2px;
+    border-radius: 5px;
+    background-color: var(--background-color);
+}
+
+#note-text {
+    width: 50vw;
+    overflow-wrap: normal;
+    border: 0;
+}
+#delete-note {
+    height: min-content;
+    width:min-content;
+    padding: 2px;
+    margin-left: 0.5vw;
+}
+
+.vet-treatment-details {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding-left: 0.5vw;
+}
+
+.vet-treatment-details li {
+    margin-bottom: 1vh;
+}
+
+.vet-treatment-details div {
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1vh;
+    border: solid var(--border-color) 2px;
+    border-radius: 5px;
+    background-color: var(--background-color);
+}
+
+.edit-section {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding-left: 0.5vw;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#vet-select {
+    width: fit-content;
+}
+
+#payment {
+    width: fit-content;
 }
 
 .upcoming-appointments ul li {
     margin-top: 2vh;
+}
+
+.treatment-info button {
+    margin-left: 40px;
 }
 
 footer {

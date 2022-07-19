@@ -4,3 +4,4 @@ import repositories.owner_repository as owner_repo
 import repositories.treatment_repository as treatment_repo
 import repositories.appointment_repository as appoint_repo
 import repositories.A_T_repository as at_repo
+import repositories.treatment_note_repository as tn_repo
