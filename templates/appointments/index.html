@@ -2,11 +2,10 @@
     <div class="index-list appointment-index">
             {% for appointment in appointments %}
                 <li>
-                    <a href="/appointments/{{appointment.id}}">{{appointment.date}} at {{appointment.time.hour}}:{{appointment.time.minute}}{%if appointment.time.minute==0%}0{% endif %} </a><br>
-                    Patient: <a href="/animals/{{appointment.patient.id}}">{{appointment.patient.name}}</a><br>
-                    Owner: <a href="/owners/{{appointment.patient.owner.id}}">{{appointment.patient.owner.first_name}} {{appointment.patient.owner.last_name}}</a><br>
-                    Vet: <a href="/vets/{{appointment.vet.id}}">{{appointment.vet.first_name}} {{appointment.vet.last_name}}</a><br>
-                    <a href="/appointments/{{appointment.id}}"><button class="form-button">See Full Details</button></a>
+                    <a href="/appointments/{{appointment.id}}">{{appointment.date}} at {{appointment.time.hour}}:{{appointment.time.minute}}{%if appointment.time.minute==0%}0{% endif %}</a>
+                    Patient: <a href="/animals/{{appointment.patient.id}}">{{appointment.patient.name}}</a>
+                    Owner: <a href="/owners/{{appointment.patient.owner.id}}">{{appointment.patient.owner.first_name}} {{appointment.patient.owner.last_name}}</a>
+                    Vet: <a href="/vets/{{appointment.vet.id}}">{{appointment.vet.first_name}} {{appointment.vet.last_name}}</a>
                 </li>
             {% endfor %}
     </div>

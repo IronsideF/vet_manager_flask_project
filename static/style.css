@@ -1,46 +1,54 @@
 :root {
-    --background-color: #ecc896;
-    --header-color: #df722a;
-    --text-color:#6f4e47 ;
-    --standout-color: #d1c9c0 ;
-    --border-color: #9e918a;
-    font-family: 'Finlandica', sans-serif;
+    --background-color: white;
+    --button-color:#2b357d ;
+    --text-color: #100d1a ;
+    --standout-color: #e64165 ;
+    --border-color: #c8cce9;
+    font-family:'Avenir', sans-serif;
 }
 body {
     background-color: var(--background-color);
     color: var(--text-color);
     margin: 0;
+    letter-spacing: 0.1em;
 }
 
 header {
-    background-color: var(--header-color);
-    color: var(--background-color) ;
+    background-color: var(--background-color);
     margin: 0;
     height: max-content;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    max-width: 80vw;
+    width: 80vw;
 }
 
 header a {
     text-decoration: none;
-    color: var(--background-color);
+    color: var(--button-color);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
 header a:hover {
     text-decoration: underline;
-    color: var(--text-color);
+    color: var(--standout-color);
 }
 
 a {
     text-decoration: none;
     color: var(--text-color);
     font-weight: bold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 a:hover {
     text-decoration: underline;
-    color: var(--header-color);
+    color: var(--standout-color);
 }
 
 header ul {
@@ -52,31 +60,37 @@ header ul li {
     margin: 5px;
 }
 
-.heading {
-    display: flex;
-    flex-direction: column;
-    padding: 5px;
-}
-.heading h1 {
-    margin: 0;
-}
-.heading h3 {
-    margin: 0;
+.logo {
+    height: 20vh;
 }
 
 .date-nav {
     display:flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 15vh;
+    max-width: 60vw;
+}
+
+.nav-bar {
+    padding-inline-start: 0;
 }
 
 .date-nav p {
     margin: 0;
+    font-weight: bold;
+    color: var(--button-color);
+    ;
 }
 
 .date-nav nav {
     margin: 0;
 }
+.nav-bar li {
+    margin-left: 1vw;
+}
+
 
 ul {
     list-style: none;
@@ -85,42 +99,56 @@ ul {
 .main-content {
     margin: auto;
     width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .announcements {
     height: 15vh;
     width: 80vw;
     margin: 2vh 0;
-    background-color: var(--standout-color);
+    background-color: var(--border-color);
     overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
 }
 
 .today {
     display: flex;
-    justify-content: space-between;
     margin: 2vh 0;
     overflow:auto;
+    justify-content: space-between;
+    width: 80vw;
 }
 
-.calendar {
-    width:max-content;
-    min-height: max-content;
+.month th {
+    padding: 10px;
+}
+.month td {
+    padding: 10px;
 }
 
-.vet-box {
-    height: 50vh;
-    width: 35vw;
-    background-color: var(--standout-color);
-    border-color: var(--border-color);
-    overflow: auto;
-}
 
 .animal-box {
-    height: 50vh;
-    width: 35vw;
-    background-color: var(--standout-color);
+    height: 45vh;
+    width:45vw;
+    background-color: var(--border-color);
     border-color: var(--border-color);
     overflow: auto;
+    text-align: center;
+}
+
+.app-table td {
+    padding: 20px 60px;
+    text-align: left;
+}
+.app-table th {
+    text-transform: uppercase;
+    padding: 20px 60px;
+    text-align: left;
 }
 
 .main-buttons {
@@ -131,17 +159,21 @@ ul {
 .main-buttons button {
     height: 5rem;
     width: 20vw;
-    font-family: 'Finlandica', sans-serif;
+    font-family: 'Avenir', sans-serif;
     font-size: large;
-    background-color: var(--text-color);
-    border-color: var(--border-color);
-    color: var(--standout-color);
+    background-color: var(--button-color);
+    border-color: var(--button-color);
+    color: var(--background-color);
+    font-weight: bold;
     border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-left: 16px;
 }
 
 .main-buttons button:hover {
     cursor: pointer;
-    color: var(--header-color);
+    color: var(--standout-color);
 }
 
 
@@ -151,47 +183,77 @@ ul {
     max-width: 80vw;
     display: grid;
     grid-auto-columns: 1fr;
-    grid-auto-rows: max-content;
-    column-gap: 5%;
+    grid-auto-rows: 35%;
     overflow-y: auto;
     overflow-x: hidden;
     margin: 2vh 0;
     height: 60vh;
-    background-color: var(--standout-color);
+    background-color: var(--border-color);
 }
 
 .animal-index {
-    grid-template-columns: repeat(5, 15%);
+    grid-template-columns: repeat(4, 25%);
 }
+.animal-index li {
+    text-align: center;
+}
+
 .vet-index {
-    grid-template-columns: repeat(5, 17%);
+    grid-template-columns: repeat(4, 25%);
+    column-gap: 0;
 }
 .owner-index {
-    grid-template-columns: repeat(3, 27%);
+    grid-template-columns: repeat(3, 33%);
+    grid-auto-rows: max-content;
 }
 .treatment-index {
-    grid-template-columns: repeat(5, 15%);
+    grid-template-columns: repeat(5, 20%);
 }
 .appointment-index {
-    grid-template-columns: repeat(4, 20%);
+    grid-template-columns: repeat(3, 33%);
+    grid-auto-rows: max-content;
 }
 
 .index-list li {
     display: flex;
     flex-direction: column;
     margin-bottom: 2vh;
-    border: solid 2px var(--border-color);
+    border: solid 2px var(--button-color);
     max-height: 100%;
     max-width: 100%;
     align-items: center;
+    justify-content: space-evenly;
+    background-color: var(--background-color);
+    color: var(--button-color);
+    padding: 10px;
+    margin: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.registered {
+    text-align: center;
 }
 
 .new-form {
-    background-color: var(--standout-color);
+    background-color: var(--border-color);
     display: flex;
     flex-direction: column;
     padding: 2vh;
     align-items: center;
+    height: 100%;
+}
+
+input {
+    font-family: 'Avenir', sans-serif;
+}
+
+select {
+    font-family: 'Avenir', sans-serif;
+}
+
+textarea {
+    font-family: 'Avenir', sans-serif;
 }
 
 .new-form div {
@@ -208,30 +270,64 @@ ul {
     margin-bottom: 1vh;
     width: 30vw;
 }
+
+#animal-show-form {
+    height: 194px;
+}
+
+.payment-form {
+    height: max-content;
+}
+
 .check-in-form {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
+
+.check-in-form h3 {
+    margin:0;
+}
+
 .check-in-form input {
     margin-bottom: 1vh;
     width: fit-content;
 }
 
+#check-in {
+    display: flex;
+    flex-direction: row;
+}
+#check-left {
+    margin-right: 31px;
+}
+#check-right {
+    margin-left: 22px;
+}
+
+
 .form-button {
-    background-color: var(--text-color);
-    padding: 1vh 1vw;
-    color: var(--standout-color);
+    background-color: var(--button-color);
+    padding: 15px;
+    color: var(--background-color);
     border-radius: 5px;
+    border-color: var(--button-color);
+    width: 200px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.1em;
 }
 
 .form-button:hover {
-    color: var(--header-color);
+    color: var(--standout-color);
     cursor: pointer;
 }
 
 .show-page {
-    background-color: var(--standout-color);
+    background-color: var(--border-color);
     height: 60vh;
+    width: 80vw;
     display: grid;
     grid-template-columns: 50% 50%;
 }
@@ -242,17 +338,15 @@ ul {
     padding-left: 2vw;
 }
 
-.vet-details button {
-    margin-left: 40px;
-}
+
 
 .owner-details {
     display: flex;
     flex-direction: column;
+    padding-top: 2.1vh;
 }
 
 .owner-details button {
-    margin-left: 40px;
     margin-top: 10px;
 }
 
@@ -292,7 +386,7 @@ ul {
 
 .relational-list ul {
     overflow:auto;
-    background-color: var(--background-color);
+    background-color: var(--border-color);
     padding-top: 1vh;
     padding-bottom: 1vh;
     padding-left: 10vh;
@@ -300,13 +394,37 @@ ul {
     flex-direction: column;
 }
 
+.owner-patient-list {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 80px;
+    align-items: center;
+}
+
+.owner-patient-list div {
+    height: 100%;
+}
+.owner-patient-list p {
+    margin: 0;
+}
+
+.owner-patient-list ul {
+    margin: 0;
+    margin-inline: 0;
+    padding-inline-start: 0;
+}
+
+.owner-patient-list li {
+    margin-inline-start: 0;
+}
+
 .animal-page {
-    background-color: var(--standout-color);
+    background-color: var(--border-color);
     height: 70vh;
     max-height: 70vh;
     display: grid;
-    grid-template-columns: 40% 35% 25%;
-    grid-template-rows: 60% 40%;
+    grid-template-columns: 40% 25% 35%;
+    grid-template-rows: 70% 30%;
     overflow: auto;
 }
 
@@ -318,11 +436,18 @@ ul {
 .animal-page ul {
     padding:0;
 }
+.animal-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 194px;
+}
 
 .notes {
     grid-column: 1 / span 3;
     display: flex;
     justify-content: space-between;
+    padding-left: 10px;
 }
 .the-notes-themselves {
     display: flex;
@@ -334,13 +459,13 @@ ul {
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 1vh;
-    border: solid var(--border-color) 2px;
-    border-radius: 5px;
+    border: solid var(--button-color) 2px;
     background-color: var(--background-color);
+    padding: 2px;
 }
 
 #note-text {
-    width: 50vw;
+    width: 41vw;
     overflow-wrap: normal;
     border: 0;
 }
@@ -351,6 +476,10 @@ ul {
     margin-left: 0.5vw;
 }
 
+.tnotes-form {
+    padding-top: 0;
+}
+
 .vet-treatment-details {
     display: flex;
     flex-direction: column;
@@ -358,18 +487,21 @@ ul {
     padding-left: 0.5vw;
 }
 
-.vet-treatment-details li {
-    margin-bottom: 1vh;
+.margin-button {
+    margin-top: 20px;
 }
+
 
 .vet-treatment-details div {
     display:flex;
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 1vh;
-    border: solid var(--border-color) 2px;
-    border-radius: 5px;
+    border: solid var(--button-color) 2px;
+    padding: 2px;
+    padding-left: 6px;
     background-color: var(--background-color);
+
 }
 
 .edit-section {
@@ -389,12 +521,28 @@ ul {
     width: fit-content;
 }
 
+#treatment_id {
+    width: max-content;
+}
+
 .upcoming-appointments ul li {
     margin-top: 2vh;
 }
 
 .treatment-info button {
     margin-left: 40px;
+}
+
+.owner-update-form {
+    flex-direction: row;
+}
+
+.owner-update-form-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 50vh;
+    margin: 0 1vw;
 }
 
 footer {

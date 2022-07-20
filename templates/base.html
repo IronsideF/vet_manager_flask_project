@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a88c3faaf8.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Vet Manager</title>
 </head>
 <body>
     <header>
-        <div class="heading"><h1>Toby's Angels Veterinary Practice</h1>
-        <h3>Full Throttle Animal Care</h3></div>
-        <div class="date-nav"><p>Date: {{date}}</p>
+        <img src="../../static/img/logo.png" alt="Toby's Angels Logo" class="logo">
+        <div class="date-nav"><p class="date">{{date.day}}-{{date.month}}-{{date.year}}</p>
+            
         <nav> 
-            <ul>
+            <ul class="nav-bar">
                 <li><a href="/">Home</a></li>
                 <li><a href="/vets">Vets</a></li>
                 <li><a href="/animals">Patients</a></li>
@@ -29,8 +30,5 @@
             
         {% endblock content %}
     </div>
-<footer>
-    <h2>Toby's Angels Veterinary Practice</h2>
-</footer>
 </body>
 </html>

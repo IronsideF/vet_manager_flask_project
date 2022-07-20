@@ -1,17 +1,17 @@
 {% extends 'base.html' %}{% block content %}
 <div class="animal-page">   
     <div class="animal-details">
-    <ul>
+    <ul class="animal-list">
         <li>Name: {{ animal.name }}</li>
         <li>Age: {{ animal.age }}</li>
         <li>Type: {{ animal.type }}</li>
-        {% if animal.check_in and date < animal.check_in %}
+        {% if animal.check_out and date < animal.check_out %}
         <li>Upcoming and Current Stays: From {{animal.check_in}} to {{animal.check_out}}</li>
         {% endif %}
-        
+        <li>Owner: <a href="/owners/{{animal.owner.id}}">{{animal.owner.first_name}} {{animal.owner.last_name}}</a></li>
+        <li>Phone: {{animal.owner.phone_num}}</li>
+        <li>Email: {{animal.owner.email}}</li>
     </ul>
-    <a href="/animals/{{animal.id}}/edit"><button class="form-button">Update Patient Details</button></a>
-    <a href="/appointments/{{animal.id}}/new"><button class="form-button">Create a new Appointment</button></a>
     <ul>
         <h4>Upcoming Appointments</h4>
         {% for appointment in appointments %}
@@ -20,20 +20,17 @@
     </ul>
 </div>
     <div class="owner-details">
-        <ul>
-        <li>Owner: <a href="/owners/{{animal.owner.id}}">{{animal.owner.first_name}} {{animal.owner.last_name}}</a></li>
-        <li>Phone Number: {{animal.owner.phone_num}}</li>
-        <li>Email: {{animal.owner.email}}</li>
-        </ul>
         Registered Vet: <a href="/vets/{{animal.vet.id}}">{{animal.vet.first_name}} {{animal.vet.last_name}}</a>
+        <a href="/animals/{{animal.id}}/edit"><button class="form-button">Update Patient Details</button></a>
+        <a href="/appointments/{{animal.id}}/new"><button class="form-button">Create a new Appointment</button></a>
     </div>
     <div class="check-in-form">
-        <form action="/animals/{{animal.id}}/checkin" method="post" class="new-form">
+        <form action="/animals/{{animal.id}}/checkin" method="post" class="new-form" id="animal-show-form">
             <h3>Long Term Stay? Set Check in and out dates</h3>
-            <label for="check_in">Check In Date</label>
-            <input type="date" name="check_in" id="check_in">
-            <label for="check_out">Check Out Date</label>
-            <input type="date" name="check_out" id="check_out">
+            <div id="check-in"><div id="check-left"><label for="check_in">Check In Date</label>
+            <input type="date" name="check_in" id="check_in"></div>
+            <div id="check-right"><label for="check_out">Check Out Date</label>
+            <input type="date" name="check_out" id="check_out"></div></div>
             <button type="submit" class="form-button">Submit</button>
         </form>
     </div>
@@ -46,9 +43,9 @@
                 <button type="submit" class="form-button" id="delete-note">Delete</button>
             </form></div>
         {% endfor %}</div>
-        <form action="/tnotes" method="post" class="new-form">
+        <form action="/tnotes" method="post" class="new-form tnotes-form">
             <input type="hidden" name="animal_id" value="{{animal.id}}">
-            <textarea name="body" id="body" cols="30" rows="10"></textarea>
+            <textarea name="body" id="body" cols="36" rows="10"></textarea>
             <select name="vet_id" id="vet-select">
                 {% for vet in vets %}
                     <option value="{{vet.id}}" >{{vet.first_name}} {{vet.last_name}}</option>

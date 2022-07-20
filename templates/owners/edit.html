@@ -1,14 +1,14 @@
 {% extends 'base.html' %}{% block content %}
-    <form action="/owners/{{owner.id}}" method="post" class="new-form">
-        <div><label for="first_name">First Name:</label>
+    <form action="/owners/{{owner.id}}" method="post" class="new-form owner-update-form">
+        <div class="owner-update-form-section"><div><label for="first_name">First Name:</label>
         <input type="text" name="first_name" id="first_name" value="{{owner.first_name}}"></div>
         <div><label for="last_name">Last Name:</label>
         <input type="text" name="last_name" id="last_name" value="{{owner.last_name}}"></div>
         <div><label for="phone_num">Phone Number:</label>
         <input type="text" name="phone_num" id="phone_num" value="{{owner.phone_num}}"></div>
         <div><label for="email">Email:</label>
-        <input type="text" name="email" id="email" value="{{owner.email}}"></div>
-        <div><label for="address">Address</label>
+        <input type="text" name="email" id="email" value="{{owner.email}}"></div></div>
+        <div class="owner-update-form-section"><div><label for="address">Address</label>
         <textarea name="address" id="address" cols="30" rows="10" ">{{owner.address}}</textarea></div>
         <div><label for="registered">Registration Status:</label>
         <select name="registered" id="registered">
@@ -19,6 +19,6 @@
                 selected
             {% endif %}>Unregistered</option>
         </select></div>
-        <div class="main-buttons"><button type="submit">Update Owner Details</button></div>
+        <div class="main-buttons"><button type="submit">Update Owner Details</button></div></div>
     </form>
 {% endblock content %}

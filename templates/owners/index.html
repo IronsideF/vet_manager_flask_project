@@ -5,7 +5,11 @@
                 Name:<a href="/owners/{{owner.id}}">{{owner.first_name}} {{owner.last_name}}</a>
                 Phone number: {{owner.phone_num}} <br>
                 Email: {{owner.email}} <br>
-                Currently Registered: {{owner.registered}} <br>
+                Registered: {% if owner.registered %}
+                <i class="fa-regular fa-thumbs-up"></i>
+                {% else %}
+                <i class="fa-solid fa-thumbs-down"></i>
+                {% endif %} <br>
             </li>
         {% endfor %}
 </div> 

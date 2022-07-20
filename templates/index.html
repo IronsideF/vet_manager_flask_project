@@ -4,14 +4,14 @@
 </div>
 
 <div class="today">
-        <div class="calendar"><iframe srcdoc="{{calendar}}" class="calendar"></iframe></div>
+        <div class="calendar">{{calendar|safe}}</div>
     <div class="animal-box">
-        <h3>Appointments Today</h3>
-        <table>
+        <h3>TODAY'S APPOINTMENTS</h3>
+        <table class="app-table">
             <tr>
-                <td><b>Time</b></td>
-                <td><b>Patient</b></td>
-                <td><b>Vet</b></td>
+                <th><b>Time</b></th>
+                <th><b>Patient</b></th>
+                <th><b>Vet</b></th>
             </tr>
             {% for app in appointments_today %}
                 <tr>

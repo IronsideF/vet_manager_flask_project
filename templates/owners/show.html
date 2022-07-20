@@ -9,16 +9,11 @@
         <form action="/owners/{{owner.id}}/edit">
             <button type="submit" class="form-button">Update Owner Details</button>
         </form>
-</div>
-<div class="registered">
-    <h4>Current Debt</h4>
-    <p>{{owner.debt}}</p>
-    <form action="/owners/{{owner.id}}/pay" method="post" class="new-form">
-        <label for="payment">Payment Total</label>
-        <input type="number" name="payment" id="payment" max="{{owner.debt}}">
-        <button type="submit" class="form-button">Make Payment</button>
-    </form>
-    <p>Currently Registered: {{owner.registered}}</p>
+        <p>Registered: {% if owner.registered %}
+            <i class="fa-regular fa-thumbs-up"></i>
+            {% else %}
+            <i class="fa-solid fa-thumbs-down"></i>
+            {% endif %}</p>
     <form action="/owners/{{owner.id}}/registration" method="post">
         <button class="form-button" type="submit">{% if owner.registered %}
                 Deregister
@@ -27,8 +22,18 @@
             {% endif %}</button>
     </form>
 </div>
-<div class="relational-list">
-        <p>Animals:</p>
+<div class="registered">
+    <h4>Current Debt</h4>
+    <p>{{owner.debt}}</p>
+    <form action="/owners/{{owner.id}}/pay" method="post" class="new-form payment-form">
+        <label for="payment">Payment Total</label>
+        <input type="number" name="payment" id="payment" max="{{owner.debt}}">
+        <button type="submit" class="form-button">Make Payment</button>
+    </form>
+    
+</div>
+<div class="relational-list owner-patient-list">
+        <div><p>Animals:</p>
             <ul>
                 {% if animals %}
                     {% for animal in animals %}
@@ -37,7 +42,7 @@
                 {% else %}
                     No animals with the practice
                 {% endif %}
-            </ul>
+            </ul></div>
         {% if owner.registered %}
         <a href="/animals/{{owner.id}}/new"><button type="button" class="form-button">Register a new Animal with this Owner</button></a>
         {% endif %}
