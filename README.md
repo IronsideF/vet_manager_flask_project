@@ -15,8 +15,8 @@ This app will allow you do do this and more. You can register animals, vets and 
 It was created using Python3, HTML5, CSS, Postgres, Psycopg2, Flask 
 
 To get it running, you'll need to download this repo and follow a few steps. Ensure you have all the neccessary programs installed:
-    1. Create the database - '''createdb vet_manager
-    2. Set up your tables. In the main folder, run this '''psql -d vet_manager -f db/vet_manager.sql
-    3. In the main folder, start the app with '''flask run
+    1. Create the database - ```createdb vet_manager```
+    2. Set up your tables. In the main folder, run this ```psql -d vet_manager -f db/vet_manager.sql```
+    3. In the main folder, start the app with ```flask run```
 
 And you're good to go!
